@@ -7,7 +7,7 @@ export default function Home() {
     <main className="relative min-h-screen w-full overflow-hidden flex items-end justify-center bg-[#111] pb-6 sm:pb-10">
       
       {/* SVG Configuration for Refraction (Bending) Effect */}
-      <svg width="0" height="0" className="absolute hidden pointer-events-none">
+      <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }} aria-hidden="true">
         <filter id="glass-refraction" x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
           <feOffset in="blur" dx="20" dy="20" result="offset" />
