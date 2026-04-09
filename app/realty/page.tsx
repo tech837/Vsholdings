@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Phone,
   MessageCircle,
@@ -11,6 +11,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { GlassButton } from "@/components/GlassComponents"; // Removing dependency
+import InterestOverlay from "@/components/InterestOverlay";
 
 // Lucide React removed brand icons, so we define standard SVGs here for seamless integration
 const InstagramIcon = ({ className }: { className?: string }) => (
@@ -54,37 +55,73 @@ const CAROUSEL_DATA = [
   {
     src: "/images/Home_Page/sendoor.png",
     subtitle: "SENDHUR VILLA",
-    link: "/realty/sendoor",
+    link: "/realty/sendhur",
   },
   {
     src: "/images/Home_Page/myraa4.jpg",
     subtitle: "MEIRA BLOOM",
-    link: "/realty/myraa4",
+    link: "/realty/meira",
   },
   {
     src: "/images/Home_Page/sendoor%202.jpg",
     subtitle: "SENDHUR VILLA",
-    link: "/realty/sendoor",
+    link: "/realty/sendhur",
   },
   {
     src: "/images/Home_Page/myraa2.jpg",
     subtitle: "MEIRA BLOOM",
-    link: "/realty/myraa",
+    link: "/realty/meira",
   },
   {
     src: "/images/Home_Page/sendoor3.jpg",
     subtitle: "SENDHUR VILLA",
-    link: "/realty/sendoor",
+    link: "/realty/sendhur",
   },
   {
     src: "/images/Home_Page/myraa%203.jpg",
     subtitle: "MEIRA BLOOM",
-    link: "/realty/myraa",
+    link: "/realty/meira",
   },
 ];
 
 export default function RealtyPage() {
   const [currentImageIdx, setCurrentImageIdx] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const formSectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.5 }
+    );
+
+    if (formSectionRef.current) {
+      observer.observe(formSectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    // Reset animations
+    setIsLoaded(false);
+    setShowContent(false);
+
+    // Start zoom out after 1 second
+    const timer1 = setTimeout(() => setIsLoaded(true), 1000);
+    // Show content slightly after zoom starts
+    const timer2 = setTimeout(() => setShowContent(true), 1200);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
+  }, [currentImageIdx]);
 
   const nextImage = () => {
     setCurrentImageIdx((prev) => (prev + 1) % CAROUSEL_DATA.length);
@@ -129,83 +166,75 @@ export default function RealtyPage() {
       </svg>
 
       {/* Top Section - Hero Carousel */}
-      <section className="relative w-full h-screen min-h-[600px] flex flex-col justify-between">
-        {/* Background Image Carousel */}
-        {CAROUSEL_DATA.map((item, idx) => (
-          <div
-            key={item.src}
-            className={`absolute inset-0 transition-opacity duration-1000 z-0 ${idx === currentImageIdx ? "opacity-100" : "opacity-0"}`}
-          >
-            <Image
-              src={item.src}
-              alt={`Property Banner ${idx}`}
-              fill
-              className="object-cover"
-              priority={idx === 0}
-            />
-          </div>
-        ))}
+      <section className="relative w-full h-screen min-h-[600px] flex flex-col justify-between overflow-hidden">
+        {/* Background Image Carousel Container with Zoom Animation */}
+        <div className={`absolute inset-0 w-full h-full transition-transform duration-[2000ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${!isLoaded ? "scale-[1.15]" : "scale-100"}`}>
+          {CAROUSEL_DATA.map((item, idx) => (
+            <div
+              key={item.src}
+              className={`absolute inset-0 transition-opacity duration-1000 z-0 ${idx === currentImageIdx ? "opacity-100" : "opacity-0"}`}
+            >
+              <Image
+                src={item.src}
+                alt={`Property Banner ${idx}`}
+                fill
+                className="object-cover"
+                priority={idx === 0}
+                sizes="100vw"
+              />
+            </div>
+          ))}
+        </div>
 
         {/* Overlay Dark Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 z-10 pointer-events-none"></div>
+        <div className={`absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 z-10 pointer-events-none transition-opacity ${showContent ? "duration-1000 opacity-100" : "duration-0 opacity-0"}`}></div>
 
         {/* Header / Logo */}
-        <div className="relative z-20 flex pt-8 px-6 md:px-12 w-full justify-between items-start">
+        <div className={`relative z-20 flex pt-8 px-6 md:px-12 w-full justify-between items-start transition-all ${showContent ? 'duration-1000 opacity-100 translate-y-0' : 'duration-0 opacity-0 -translate-y-4'}`}>
           <Link href="/">
             <Image
               src="/images/Home_Page/vs%20logo%201.png"
               alt="VS Holdings Logo"
-              width={160}
-              height={80}
-              className="w-24 md:w-32 lg:w-40 object-contain drop-shadow-md"
+              width={100}
+              height={50}
+              className="w-16 md:w-20 lg:w-24 object-contain drop-shadow-md"
+              priority
             />
           </Link>
 
-          <div className="absolute left-1/2 top-10 -translate-x-1/2 text-center hidden sm:flex items-center gap-2 drop-shadow-lg">
-            <h1 className="text-xl md:text-3xl font-light tracking-widest text-white/90">
-              VS HOLDINGS <span className="text-white/40">/</span>
+          <div className="absolute left-1/2 top-8 md:top-10 -translate-x-1/2 text-center hidden sm:flex items-center gap-4 drop-shadow-lg whitespace-nowrap">
+            <h1 className="text-sm md:text-2xl font-light tracking-[0.2em] text-white/90">
+              VS HOLDINGS <span className="text-white/40 ml-1 md:ml-3">/</span>
             </h1>
-            <h2 className="text-xl md:text-4xl font-[family-name:var(--font-playfair)] italic text-white tracking-wide uppercase transition-all duration-300">
+            <h2 className="text-xl md:text-3xl lg:text-4xl font-serif italic text-white tracking-widest uppercase transition-all duration-300">
               {CAROUSEL_DATA[currentImageIdx].subtitle}
             </h2>
           </div>
         </div>
 
         {/* Carousel Controls */}
-        <div className="absolute top-1/2 -translate-y-1/2 left-4 md:left-8 z-20">
+        <div className={`absolute top-1/2 -translate-y-1/2 left-4 md:left-8 z-20 transition-all ${showContent ? 'duration-1000 delay-300 opacity-100 translate-x-0' : 'duration-0 opacity-0 -translate-x-8'}`}>
           <button
             onClick={prevImage}
-            className="text-white/70 hover:text-white transition-colors bg-black/20 hover:bg-black/40 p-2 rounded-full backdrop-blur-sm border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_0_20px_rgba(255,255,255,0.05),inset_0_2px_4px_rgba(255,255,255,0.1)]"
-            style={{
-              backdropFilter: "url(#glass-refraction-realty)",
-              WebkitBackdropFilter: "url(#glass-refraction-realty)",
-            }}
+            className="text-white/70 hover:text-white transition-colors p-2"
           >
-            <ChevronLeft className="w-8 h-8 md:w-12 md:h-12" strokeWidth={1} />
+            <ChevronLeft className="w-8 h-8 md:w-12 md:h-12" strokeWidth={2.5} />
           </button>
         </div>
-        <div className="absolute top-1/2 -translate-y-1/2 right-4 md:right-8 z-20">
+        <div className={`absolute top-1/2 -translate-y-1/2 right-4 md:right-8 z-20 transition-all ${showContent ? 'duration-1000 delay-300 opacity-100 translate-x-0' : 'duration-0 opacity-0 translate-x-8'}`}>
           <button
             onClick={nextImage}
-            className="text-white/70 hover:text-white transition-colors bg-black/20 hover:bg-black/40 p-2 rounded-full backdrop-blur-sm border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_0_20px_rgba(255,255,255,0.05),inset_0_2px_4px_rgba(255,255,255,0.1)]"
-            style={{
-              backdropFilter: "url(#glass-refraction-realty)",
-              WebkitBackdropFilter: "url(#glass-refraction-realty)",
-            }}
+            className="text-white/70 hover:text-white transition-colors p-2"
           >
-            <ChevronRight className="w-8 h-8 md:w-12 md:h-12" strokeWidth={1} />
+            <ChevronRight className="w-8 h-8 md:w-12 md:h-12" strokeWidth={2.5} />
           </button>
         </div>
 
         {/* Bottom Button */}
-        <div className="relative z-20 pb-16 flex justify-center w-full">
+        <div className={`relative z-20 pb-16 flex justify-center w-full transition-all ${showContent ? 'duration-1000 delay-500 opacity-100 translate-y-0' : 'duration-0 opacity-0 translate-y-8'}`}>
           <Link
             href={CAROUSEL_DATA[currentImageIdx].link}
-            className="text-white text-xs md:text-sm tracking-[0.2em] py-4 px-8 md:px-12 rounded-[20px] uppercase bg-white/5 hover:bg-white/10 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_0_20px_rgba(255,255,255,0.05),inset_0_2px_4px_rgba(255,255,255,0.1)] transition-all duration-300"
-            style={{
-              backdropFilter: "url(#glass-refraction-realty)",
-              WebkitBackdropFilter: "url(#glass-refraction-realty)",
-            }}
+            className="text-white text-xs md:text-sm tracking-[0.2em] py-4 px-10 md:px-14 rounded-[20px] uppercase bg-black/30 backdrop-blur-[2px] border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/10 hover:scale-[1.05]"
           >
             Discover The Collection
           </Link>
@@ -213,9 +242,9 @@ export default function RealtyPage() {
       </section>
 
       {/* Bottom Section - Express Interest Form */}
-      <section className="relative w-full h-screen flex flex-col md:flex-row min-h-[600px]">
+      <section ref={formSectionRef} className="relative w-full h-screen flex flex-col md:flex-row min-h-[600px] overflow-hidden">
         {/* Left Column - Information */}
-        <div className="w-full md:w-[45%] bg-[#0a0a0a] flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16 md:py-0 relative z-10">
+        <div className={`w-full md:w-[45%] bg-[#0a0a0a] flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16 md:py-0 relative z-10 transition-all duration-[1500ms] ease-out ${isInView ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
           <div className="mb-12">
             <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white tracking-tight leading-none mb-1">
               EXPRESS
@@ -227,7 +256,7 @@ export default function RealtyPage() {
 
           <div className="flex gap-6 items-start relative before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[2px] before:bg-white/20 pl-6">
             <div className="flex flex-col gap-6">
-              <h4 className="text-2xl md:text-3xl font-[family-name:var(--font-playfair)] italic text-white/90 leading-snug tracking-wide max-w-sm">
+              <h4 className="text-2xl md:text-3xl font-serif italic text-white/90 leading-snug tracking-wide max-w-sm">
                 CURATING EXCELLENCE IN MODERN REAL ESTATE
               </h4>
               <p className="text-sm md:text-base text-white/60 font-light leading-relaxed tracking-wide max-w-xs md:max-w-sm">
@@ -267,10 +296,11 @@ export default function RealtyPage() {
           {/* Background Image for right side */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/Home_Page/FRONT ELEVATION - NIGHT VIEW.png"
+              src="/images/Home_Page/footer.jpg"
               alt="Night View Building"
               fill
               className="object-cover opacity-70"
+              sizes="(max-width: 768px) 100vw, 55vw"
             />
             {/* Gradient to blend left edge with left column */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent"></div>
@@ -344,11 +374,7 @@ export default function RealtyPage() {
               <div className="mt-2 text-center md:text-left flex justify-center md:justify-start">
                 <button
                   type="button"
-                  className="w-[200px] py-4 rounded-[20px] text-white tracking-[0.2em] text-xs uppercase bg-white/5 hover:bg-white/10 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_0_20px_rgba(255,255,255,0.05),inset_0_2px_4px_rgba(255,255,255,0.1)] transition-all duration-300"
-                  style={{
-                    backdropFilter: "url(#glass-refraction-realty)",
-                    WebkitBackdropFilter: "url(#glass-refraction-realty)",
-                  }}
+                  className="w-full md:w-[385px] h-[46px] rounded-none text-white tracking-[0.2em] text-xs uppercase bg-black/30 backdrop-blur-[2px] border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]"
                 >
                   Enquire Now
                 </button>
@@ -366,38 +392,36 @@ export default function RealtyPage() {
       </footer>
 
       {/* Floating Action Buttons */}
-      <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 flex flex-col gap-4">
-        <a
-          href="tel:+1234567890"
-          className="w-12 h-12 md:w-14 md:h-14 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center border border-white/20 hover:scale-110"
-          style={{
-            backdropFilter: "url(#glass-refraction-realty)",
-            WebkitBackdropFilter: "url(#glass-refraction-realty)",
-          }}
+      {/* Individual Contact Side Pills (Figma Design) */}
+      <div className="fixed right-0 bottom-12 z-50 flex flex-col items-end gap-3 pointer-events-none">
+        <button
+          onClick={() => setShowOverlay(true)}
+          className="pointer-events-auto flex items-center justify-center bg-black/40 backdrop-blur-md border border-white/20 border-r-0 rounded-l-[30px] w-14 h-14 text-white/70 hover:text-white hover:w-20 transition-all duration-300 group shadow-2xl"
         >
-          <Phone
-            className="w-5 h-5 md:w-6 md:h-6"
-            fill="currentColor"
-            strokeWidth={0}
-          />
-        </a>
+          <Phone className="w-6 h-6 transform group-hover:scale-110 transition-transform" fill="currentColor" strokeWidth={0} />
+        </button>
         <a
           href="https://wa.me/1234567890"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-12 h-12 md:w-14 md:h-14 bg-black/40 hover:bg-black/60 backdrop-blur-md text-white rounded-full shadow-2xl transition-all duration-300 flex items-center justify-center border border-white/20 hover:scale-110"
-          style={{
-            backdropFilter: "url(#glass-refraction-realty)",
-            WebkitBackdropFilter: "url(#glass-refraction-realty)",
-          }}
+          className="pointer-events-auto flex items-center justify-center bg-black/40 backdrop-blur-md border border-white/20 border-r-0 rounded-l-[30px] w-14 h-14 text-white hover:text-white hover:w-20 transition-all duration-300 group shadow-2xl"
         >
-          <MessageCircle
-            className="w-5 h-5 md:w-6 md:h-6"
-            fill="currentColor"
-            strokeWidth={0}
+          <Image
+            src="/whatsapp.svg"
+            alt="WhatsApp"
+            width={24}
+            height={24}
+            className="w-6 h-6 transform group-hover:scale-110 transition-transform brightness-0 invert"
           />
         </a>
       </div>
+
+      {showOverlay && (
+        <InterestOverlay
+          backgroundImage={CAROUSEL_DATA[currentImageIdx].src}
+          onComplete={() => setShowOverlay(false)}
+        />
+      )}
     </main>
   );
 }
