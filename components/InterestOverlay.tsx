@@ -44,27 +44,16 @@ export default function InterestOverlay({ onComplete, backgroundImage, showClose
 
     return (
         <div className={`fixed inset-0 z-[100] transition-opacity duration-[2000ms] ease-in-out ${(isVisible && !isExiting) ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-            <div className="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+            {/* Reduced background dimming slightly and applied a lighter blur so the underlying page is visible */}
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
 
             <div
                 className={`absolute inset-0 transition-transform duration-[2000ms] ease-in-out
                     ${(isVisible && !isExiting) ? 'translate-x-[0%]' : 'translate-x-[110%]'}
                 `}
             >
-                {/* Left Side: Project Image */}
-                <div className="absolute left-0 top-0 bottom-0 hidden md:block w-full md:w-[58%] h-full overflow-hidden">
-                    <Image
-                        src={backgroundImage}
-                        alt="Project Architecture"
-                        fill
-                        className="object-cover"
-                        priority
-                        sizes="(max-width: 768px) 100vw, 58vw"
-                    />
-                </div>
-
-                {/* Right Side: Form Panel */}
-                <div className="absolute right-0 top-0 bottom-0 w-full md:w-[50%] h-full bg-[#2E311A] md:rounded-tl-[120px] shadow-[-30px_0_80px_rgba(0,0,0,0.4)] p-8 md:p-16 lg:p-24 flex flex-col justify-center text-white z-10">
+                {/* Form Panel (Right Side) with Glassmorphism */}
+                <div className="absolute right-0 top-0 bottom-0 w-full md:w-[50%] lg:w-[45%] h-full bg-[#2E311A]/60 backdrop-blur-2xl md:rounded-tl-[120px] shadow-[-30px_0_80px_rgba(0,0,0,0.4)] p-8 md:p-16 lg:p-24 flex flex-col justify-center text-white z-10 border-l border-white/10">
                     {/* Close Button */}
                     {showCloseButton && (
                         <button

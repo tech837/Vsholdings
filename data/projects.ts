@@ -31,6 +31,7 @@ export interface ProjectData {
     heroImage: string;
     section2Image: string;
     carouselImages: string[];
+    elevatedBgImage: string;
     featuresDescription: string;
     features: ProjectFeature[];
     locationDesc: string;
@@ -54,10 +55,11 @@ export const projectsData: Record<string, ProjectData> = {
         heroImage: "/images/Home_Page/sendhur page.jpg",
         section2Image: "/images/Home_Page/sendhur page.jpg",
         carouselImages: [
-            "/images/Home_Page/sendoor.png",
+            "/images/Home_Page/Elevation front 2.png",
             "/images/Home_Page/sendoor 2.jpg",
             "/images/Home_Page/sendoor3.jpg",
         ],
+        elevatedBgImage: "/images/Home_Page/bgimg.png",
         featuresDescription: "Strategically located in Namakkal with seamless access to key destinations.",
         features: [
             { icon: 'MapPin', title: 'Prime Location', desc: "Strategically located in Namakkal with seamless access to key destinations." },
@@ -114,6 +116,7 @@ export const projectsData: Record<string, ProjectData> = {
             "/images/Home_Page/myraa2.jpg",
             "/images/Home_Page/myraa4.jpg",
         ],
+        elevatedBgImage: "/images/Home_Page/bgimg.png",
         featuresDescription: "Strategically located in Namakkal with seamless access to key destinations.",
         features: [
             { icon: 'MapPin', title: 'Prime Location', desc: "Strategically located in Namakkal with seamless access to key destinations." },

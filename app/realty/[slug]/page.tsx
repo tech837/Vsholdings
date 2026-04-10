@@ -107,7 +107,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                 </section>
 
                 {/* Why Project Section */}
-                <section className="w-full bg-[#fdfaf1] py-24 px-6 md:px-12 lg:px-16 flex flex-col items-start gap-12">
+                <section className="w-full bg-[#fdfaf1] pt-24 pb-4 md:pb-6 px-6 md:px-12 lg:px-16 flex flex-col items-start gap-12">
                     <div className="max-w-4xl">
                         <h2 className="text-3xl md:text-5xl text-[#1a1a1a] font-light tracking-tight leading-tight">
                             Why {data.projectName} is the <br />
@@ -161,7 +161,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                 <section className="w-full h-screen relative flex items-center overflow-hidden">
                     <div className="absolute inset-0 z-0 h-full w-full">
                         <Image
-                            src={data.carouselImages[0] || data.section2Image}
+                            src={data.elevatedBgImage || data.section2Image}
                             alt="Elevated Living Background"
                             fill
                             className="object-cover"
@@ -192,7 +192,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                             </button>
                         </div>
 
-                        <div className="w-full md:w-3/5 lg:w-[900px] aspect-[16/10] relative md:-ml-12 lg:-ml-24 group">
+                        <div className="w-full md:w-[57%] lg:w-[855px] aspect-[16/10] relative md:-ml-12 lg:-ml-24 group">
                             <div className="w-full h-full overflow-hidden shadow-2xl rounded-sm relative">
                                 {data.carouselImages.map((img, idx) => (
                                     <div
