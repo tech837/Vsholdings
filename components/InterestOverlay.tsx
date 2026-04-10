@@ -39,17 +39,17 @@ export default function InterestOverlay({ onComplete, backgroundImage, showClose
         setTimeout(() => {
             document.body.style.overflow = 'auto';
             onComplete();
-        }, 2000); // Updated to match 2s duration
+        }, 500); // Updated to match 500ms duration
     };
 
     return (
-        <div className={`fixed inset-0 z-[100] transition-opacity duration-[2000ms] ease-in-out ${(isVisible && !isExiting) ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <div className={`fixed inset-0 z-[100] transition-opacity duration-500 ease-out ${(isVisible && !isExiting) ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
             {/* Reduced background dimming slightly and applied a lighter blur so the underlying page is visible */}
             <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
 
             <div
-                className={`absolute inset-0 transition-transform duration-[2000ms] ease-in-out
-                    ${(isVisible && !isExiting) ? 'translate-x-[0%]' : 'translate-x-[110%]'}
+                className={`absolute inset-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
+                    ${(isVisible && !isExiting) ? 'translate-x-[0%]' : 'translate-x-[100%]'}
                 `}
             >
                 {/* Form Panel (Right Side) with Glassmorphism */}

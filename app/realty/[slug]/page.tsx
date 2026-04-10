@@ -237,7 +237,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                 {/* Dynamic Content Section (Location / Gallery) */}
                 <section id="dynamic-content" className="w-full bg-black py-12 md:py-20 px-6 md:px-12 lg:px-24 flex flex-col gap-12 relative min-h-[800px]">
                     {activeTab === 'location' ? (
-                        <div key="location" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-1000 ease-out">
+                        <div key="location" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                             <div className="flex flex-col md:flex-row items-center justify-between gap-16">
                                 {/* Map Side */}
                                 <div className="w-full md:w-1/2 aspect-square max-w-[600px] relative rounded-sm overflow-hidden border border-white/10">
@@ -270,7 +270,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                             </div>
                         </div>
                     ) : activeTab === 'gallery' ? (
-                        <div key="gallery" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-1000 ease-out">
+                        <div key="gallery" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                             <div className="w-full flex flex-col items-center justify-center gap-12">
                                 <div className="relative w-full h-[650px] flex items-center justify-center overflow-visible">
                                     <div className="relative w-full max-w-7xl h-full flex items-center justify-center">
@@ -302,7 +302,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 955px"
                                                             />
                                                         </div>
-                                                        <div className={`pt-4 pb-0 flex items-center justify-center transition-opacity duration-1000 ${isActive ? "opacity-100" : "opacity-0"}`}>
+                                                        <div className={`pt-4 pb-0 flex items-center justify-center transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`}>
                                                             <p className="text-[#2E311A] italic text-[14px] md:text-[16px] lg:text-[20px] tracking-[0.4em] uppercase">
                                                                 {img.title}
                                                             </p>
@@ -330,7 +330,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                             </div>
                         </div>
                     ) : activeTab === 'floorplans' ? (
-                        <div key="floorplans" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-1000 ease-out">
+                        <div key="floorplans" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                             <div className="w-full flex items-center justify-center py-6 md:py-10 px-4">
                                 <div className="bg-[#d9d9d9] w-full max-w-[1400px] h-auto md:h-[650px] relative flex flex-col items-center justify-center rounded-sm overflow-hidden py-12 md:py-0">
                                     {/* Header Text - Aligned Left */}
@@ -400,7 +400,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                             </div>
                         </div>
                     ) : activeTab === 'brochure' ? (
-                        <div key="brochure" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-1000 ease-out">
+                        <div key="brochure" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
                             <div className="w-full flex items-center justify-center min-h-[600px] px-4 md:px-0">
                                 <div className="relative w-full max-w-6xl aspect-[16/8] md:aspect-[21/9] rounded-sm overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]">
                                     <Image
