@@ -107,8 +107,8 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                 </section>
 
                 {/* Why Project Section */}
-                <section className="w-full bg-[#fdfaf1] py-24 px-6 md:px-12 lg:px-16 flex flex-col items-center gap-12">
-                    <div className="w-full max-w-[1600px] flex flex-col gap-12">
+                <section className="w-full bg-[#F8EEDB] min-h-screen pt-4 pb-10 md:pt-8 md:pb-16 px-6 md:px-12 lg:px-16 flex flex-col items-center justify-start gap-2">
+                    <div className="w-full max-w-[1800px] flex flex-col">
                         <div className="max-w-4xl">
                             <h2 className="text-3xl md:text-5xl text-[#1a1a1a] font-light tracking-tight leading-tight">
                                 Why {data.projectName} is the <br />
@@ -117,8 +117,8 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                         </div>
                     </div>
 
-                    <div className="w-full max-w-[1600px] mx-auto bg-[#2a3024] rounded-[2px] flex flex-col lg:flex-row overflow-hidden shadow-2xl min-h-[600px]">
-                        <div className="w-full lg:w-1/2 min-h-[400px] py-1 pl-1 pr-4 md:py-2 md:pl-2 md:pr-6 lg:py-2 lg:pl-2 lg:pr-8 flex">
+                    <div className="w-full max-w-[1800px] mx-auto bg-[#2E311A] rounded-[2px] flex flex-col lg:flex-row overflow-hidden shadow-2xl min-h-[500px] lg:h-[70vh]">
+                        <div className="w-full lg:w-1/2 min-h-[400px] py-1 pl-1 pr-0 md:py-2 md:pl-2 md:pr-0 lg:py-2 lg:pl-2 lg:pr-0 flex">
                             <div className="relative w-full h-full min-h-[400px] overflow-hidden">
                                 <Image
                                     src={data.section2Image}
@@ -130,30 +130,32 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                             </div>
                         </div>
 
-                        <div className="w-full lg:w-1/2 p-8 md:p-16 flex flex-col justify-center gap-12">
+                        <div className="w-full lg:w-1/2 p-8 md:px-12 md:pt-8 md:pb-12 lg:pl-6 lg:pr-32 lg:pt-8 lg:pb-10 flex flex-col justify-between">
                             <div>
-                                <h3 className="text-2xl md:text-3xl text-white/90 font-light tracking-wide mb-2">
+                                <h3 className="text-2xl md:text-[40px] text-[#C6AE73] font-light tracking-wide mb-1 leading-tight">
                                     Beyond a residence —
                                 </h3>
-                                <p className="italic text-3xl md:text-4xl text-[#b3a17e] tracking-wide">
+                                <p className="italic text-3xl md:text-[40px] text-[#C6AE73] tracking-wide leading-tight">
                                     your lifestyle upgrade
                                 </p>
                             </div>
 
-                            <div className="flex flex-col gap-6 lg:gap-8">
+                            <div className="flex flex-col">
                                 {data.features.map((feature, idx) => (
-                                    <div key={idx} className="flex items-start gap-6 group cursor-pointer transition-all duration-300">
-                                        <div className="mt-1 text-[#b3a17e]/80 group-hover:text-[#b3a17e] transition-colors duration-300">
-                                            {getIconComponent(feature.icon, "w-6 h-6")}
-                                        </div>
-                                        <div className="flex flex-col">
-                                            <h4 className="text-lg font-light group-hover:font-medium text-white/90 group-hover:text-white tracking-widest group-hover:tracking-wide uppercase text-sm transition-all duration-300">
-                                                {feature.title}
-                                            </h4>
-                                            <div className="max-h-0 opacity-0 overflow-hidden group-hover:max-h-32 group-hover:opacity-100 transition-all duration-500 ease-in-out">
-                                                <p className="text-white/60 text-sm font-light leading-relaxed max-w-sm pt-2">
-                                                    {feature.desc}
-                                                </p>
+                                    <div key={idx} className={`flex flex-col py-4 lg:py-5 border-b border-white/10 group cursor-pointer transition-all duration-300`}>
+                                        <div className="flex items-start gap-6">
+                                            <div className="mt-1 text-[#7B7B7B] group-hover:text-[#C6AE73] transition-colors duration-300">
+                                                {getIconComponent(feature.icon, "w-6 h-6")}
+                                            </div>
+                                            <div className="flex flex-col">
+                                                <h4 className="font-light group-hover:font-medium text-[#7B7B7B] group-hover:text-[#F8EEDB] tracking-widest text-[16px] md:text-[20px] uppercase transition-all duration-300">
+                                                    {feature.title}
+                                                </h4>
+                                                <div className="max-h-0 opacity-0 overflow-hidden group-hover:max-h-32 group-hover:opacity-100 transition-all duration-500 ease-in-out">
+                                                    <p className="text-white/60 text-sm font-light leading-relaxed max-w-sm pt-2">
+                                                        {feature.desc}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -465,7 +467,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                 </section>
 
                 {/* FAQ Section */}
-                <section className="w-full bg-[#fdfaf1] py-24 px-6 md:px-12 lg:px-24 flex flex-col items-center gap-16">
+                <section className="w-full bg-[#F8EEDB] py-24 px-6 md:px-12 lg:px-24 flex flex-col items-center gap-16">
                     <h2 className="text-[56px] italic text-[#2E311A] tracking-tight text-center">
                         Frequently Asked questions
                     </h2>
@@ -503,8 +505,8 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                 </section>
 
                 {/* Footer */}
-                <footer className="w-full py-6 flex items-center justify-center bg-black relative z-20">
-                    <p className="text-[8px] md:text-[10px] text-white/40 tracking-widest uppercase">
+                <footer className="w-full py-6 flex items-center justify-center bg-[#F8EEDB] relative z-20 border-t border-black/5">
+                    <p className="text-[8px] md:text-[10px] text-[#2E311A]/60 tracking-widest uppercase font-medium">
                         ©2025 VS HOLDING. All rights reserved
                     </p>
                 </footer>
