@@ -2,15 +2,15 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #C6AE73;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-heading: "rogue", serif;
-  --font-body: "Helvetica Now Display", Helvetica, Arial, sans-serif;
-  
+  --font-heading: var(--font-ragoe, serif);
+  --font-body: var(--font-helvetica, sans-serif);
+
   --font-sans: var(--font-body);
   --font-serif: var(--font-heading);
 }
@@ -18,7 +18,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #C6AE73;
   }
 }
 
@@ -30,10 +30,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
 }
 
-p, a, span, button, input, select, textarea {
+p,
+a,
+span,
+button,
+input,
+select,
+textarea {
   font-family: var(--font-body);
+}
+
+h1 span,
+h2 span,
+h3 span,
+h4 span,
+h5 span,
+h6 span {
+  font-family: inherit;
 }

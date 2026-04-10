@@ -134,7 +134,7 @@ export default function RealtyPage() {
   };
 
   return (
-    <main className="min-h-screen w-full bg-[#0a0a0a] text-white flex flex-col font-sans overflow-x-hidden">
+    <main className="min-h-screen w-full bg-[#0a0a0a] text-white flex flex-col overflow-x-hidden">
       {/* SVG Configuration for Refraction (Bending) Effect */}
       <svg
         style={{
@@ -206,7 +206,7 @@ export default function RealtyPage() {
             <h1 className="text-sm md:text-2xl font-light tracking-[0.2em] text-white/90">
               VS HOLDINGS <span className="text-white/40 ml-1 md:ml-3">/</span>
             </h1>
-            <h2 className="text-xl md:text-3xl lg:text-4xl font-serif italic text-white tracking-widest uppercase transition-all duration-300">
+            <h2 className="text-xl md:text-3xl lg:text-4xl italic text-white tracking-widest uppercase transition-all duration-300">
               {CAROUSEL_DATA[currentImageIdx].subtitle}
             </h2>
           </div>
@@ -256,7 +256,7 @@ export default function RealtyPage() {
 
           <div className="flex gap-6 items-start relative before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[2px] before:bg-white/20 pl-6">
             <div className="flex flex-col gap-6">
-              <h4 className="text-2xl md:text-3xl font-serif italic text-white/90 leading-snug tracking-wide max-w-sm">
+              <h4 className="text-2xl md:text-3xl italic text-white/90 leading-snug tracking-wide max-w-sm">
                 CURATING EXCELLENCE IN MODERN REAL ESTATE
               </h4>
               <p className="text-sm md:text-base text-white/60 font-light leading-relaxed tracking-wide max-w-xs md:max-w-sm">

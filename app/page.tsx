@@ -41,12 +41,12 @@ export default function Home() {
         {/* Left Button - Government Projects */}
         <div className="group relative block w-[362px] h-[114px] transition-transform duration-500 hover:scale-[1.02] cursor-default">
           <div
-            className="w-full h-full bg-black/30 backdrop-blur-[2px] border border-white/50 rounded-[20px] shadow-[0_8px_32px_rgba(0,0,0,0.25)] flex flex-col items-center justify-center text-center transition-all duration-300"
+            className="w-full h-full bg-black/20 backdrop-blur-md border border-white/20 rounded-[20px] shadow-[0_8px_32px_rgba(0,0,0,0.25)] flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:bg-black/30 group-hover:border-white/30"
           >
-            <h2 className="text-[28px] font-serif italic text-white tracking-wide mb-2 drop-shadow-md whitespace-nowrap">
+            <h2 className="text-[36px] italic text-[#F8EEDB] tracking-wide mb-2 drop-shadow-md whitespace-nowrap">
               Government Projects
             </h2>
-            <p className="text-[10px] text-white font-sans tracking-[0.2em] uppercase drop-shadow-sm">
+            <p className="text-[15px] text-[#F8EEDB] tracking-[0.2em] uppercase drop-shadow-sm">
               (Coming Soon)
             </p>
           </div>
@@ -55,12 +55,12 @@ export default function Home() {
         {/* Right Button - Realty Projects */}
         <Link href="/realty" className="group relative block w-[362px] h-[114px] transition-transform duration-500 hover:scale-[1.02] cursor-pointer">
           <div
-            className="w-full h-full bg-black/30 backdrop-blur-[2px] border border-white/50 rounded-[20px] shadow-[0_8px_32px_rgba(0,0,0,0.25)] flex flex-col items-center justify-center text-center transition-all duration-300"
+            className="w-full h-full bg-black/20 backdrop-blur-md border border-white/20 rounded-[20px] shadow-[0_8px_32px_rgba(0,0,0,0.25)] flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:bg-black/30 group-hover:border-white/30"
           >
-            <h2 className="text-[28px] font-serif italic text-white tracking-wide mb-2 drop-shadow-md whitespace-nowrap">
+            <h2 className="text-[36px] italic text-[#F8EEDB] tracking-wide mb-2 drop-shadow-md whitespace-nowrap">
               Realty Projects
             </h2>
-            <p className="flex items-center justify-center gap-2 text-[10px] text-[#c69c6d] group-hover:text-[#e8b577] font-sans tracking-[0.2em] uppercase transition-colors duration-300 drop-shadow-sm font-medium">
+            <p className="flex items-center justify-center gap-2 text-[15px] text-[#C6AE73] group-hover:text-[#e8b577] tracking-[0.2em] uppercase transition-colors duration-300 drop-shadow-sm font-medium">
               ENTER SITE <span className="text-[14px] font-light leading-[0] pb-[2px] group-hover:translate-x-1.5 transition-transform duration-300">→</span>
             </p>
           </div>

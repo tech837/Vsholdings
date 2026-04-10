@@ -55,7 +55,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
         <>
             {showOverlay && <InterestOverlay onComplete={() => setShowOverlay(false)} backgroundImage={data.overlayBgImage} showCloseButton={false} />}
             {isManualOpen && <InterestOverlay onComplete={() => setIsManualOpen(false)} backgroundImage={data.overlayBgImage} showCloseButton={true} />}
-            <main className="min-h-screen w-full bg-[#0a0a0a] text-white flex flex-col font-sans relative overflow-x-hidden">
+            <main className="min-h-screen w-full bg-[#0a0a0a] text-white flex flex-col relative overflow-x-hidden">
                 {/* Hero Section */}
                 <section className="h-screen w-full relative flex-shrink-0">
                     <div className="absolute inset-0 z-0 h-full w-full overflow-hidden">
@@ -73,7 +73,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                         <h1 className={`text-2xl md:text-4xl font-light tracking-[0.2em] ${slug === 'meira' ? 'text-white' : 'text-[#2E311A]'}`}>
                             VS HOLDING <span className={`${slug === 'meira' ? 'text-white/40' : 'text-[#2E311A]/40'} ml-2 md:ml-4`}>/</span>
                         </h1>
-                        <h2 className={`text-2xl md:text-5xl font-serif italic tracking-widest uppercase ${slug === 'meira' ? 'text-white' : 'text-[#2E311A]'}`}>
+                        <h2 className={`text-2xl md:text-5xl italic tracking-widest uppercase ${slug === 'meira' ? 'text-white' : 'text-[#2E311A]'}`}>
                             {data.projectName}
                         </h2>
                     </div>
@@ -111,7 +111,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                     <div className="max-w-4xl">
                         <h2 className="text-3xl md:text-5xl text-[#1a1a1a] font-light tracking-tight leading-tight">
                             Why {data.projectName} is the <br />
-                            <span className="font-serif italic text-4xl md:text-6xl mt-1 block">right choice</span>
+                            <span className="italic text-4xl md:text-6xl mt-1 block">right choice</span>
                         </h2>
                     </div>
 
@@ -131,7 +131,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                 <h3 className="text-2xl md:text-3xl text-white/90 font-light tracking-wide mb-2">
                                     Beyond a residence —
                                 </h3>
-                                <p className="font-serif italic text-3xl md:text-4xl text-[#b3a17e] tracking-wide">
+                                <p className="italic text-3xl md:text-4xl text-[#b3a17e] tracking-wide">
                                     your lifestyle upgrade
                                 </p>
                             </div>
@@ -172,7 +172,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
 
                     <div className="relative z-20 w-full px-6 md:px-12 lg:px-24 flex flex-col md:flex-row items-center gap-12 md:justify-between">
                         <div className="w-full md:w-[45%] flex flex-col gap-3">
-                            <h4 className="font-serif italic text-base md:text-xl text-white/80 tracking-widest uppercase">
+                            <h4 className="italic text-base md:text-xl text-white/80 tracking-widest uppercase">
                                 {data.projectName}
                             </h4>
                             <h3 className="text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.2em] text-white leading-none whitespace-nowrap mb-1 uppercase">
@@ -246,8 +246,8 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
 
                                 {/* Text Side */}
                                 <div className="w-full md:w-1/2 flex flex-col gap-10">
-                                    <h3 className="text-3xl md:text-5xl font-serif italic text-white tracking-widest uppercase flex items-baseline gap-4">
-                                        <span className="text-3xl md:text-5xl font-sans normal-case tracking-widest font-light opacity-80">PRIME</span>
+                                    <h3 className="text-3xl md:text-5xl italic text-white tracking-widest uppercase flex items-baseline gap-4">
+                                        <span className="text-3xl md:text-5xl normal-case tracking-widest font-light opacity-80">PRIME</span>
                                         LOCATION
                                     </h3>
 
@@ -295,7 +295,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                                             />
                                                         </div>
                                                         <div className={`h-8 md:h-12 lg:h-20 flex items-center justify-center transition-opacity duration-1000 ${isActive ? "opacity-100" : "opacity-0"}`}>
-                                                            <p className="text-[#2E311A] font-serif italic text-[14px] md:text-[16px] lg:text-[20px] tracking-[0.4em] uppercase">
+                                                            <p className="text-[#2E311A] italic text-[14px] md:text-[16px] lg:text-[20px] tracking-[0.4em] uppercase">
                                                                 {img.title}
                                                             </p>
                                                         </div>
@@ -384,7 +384,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                     {/* Label Bottom Right with line */}
                                     <div className="absolute right-10 bottom-10 hidden md:flex flex-col items-end gap-1 text-right">
                                         <div className="w-[120px] md:w-[180px] h-[1px] bg-[#1a1a1a]/30"></div>
-                                        <span className="text-[#1a1a1a] font-sans text-lg md:text-xl font-bold tracking-[0.2em] uppercase">
+                                        <span className="text-[#1a1a1a] text-lg md:text-xl font-bold tracking-[0.2em] uppercase">
                                             {data.floorPlans[floorPlanIdx].label}
                                         </span>
                                     </div>
@@ -405,7 +405,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                     <div className="absolute inset-0 bg-black/20"></div>
                                     <div className="absolute inset-0 flex items-center justify-center">
                                         <div className="bg-[#D9D9D91A] backdrop-blur-[4px] border border-white/10 rounded-lg flex flex-col items-center justify-center gap-6 text-center w-[90%] md:w-[863px] md:h-[339px] shadow-2xl p-6 md:p-12">
-                                            <h3 className="font-serif italic text-2xl md:text-[32px] text-white tracking-[0.1em] uppercase leading-tight">
+                                            <h3 className="italic text-2xl md:text-[32px] text-white tracking-[0.1em] uppercase leading-tight">
                                                 Download The Brochure
                                             </h3>
                                             <p className="text-white/60 text-[10px] md:text-sm tracking-[0.3em] font-light uppercase max-w-lg">
@@ -460,8 +460,8 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
 
                 {/* FAQ Section */}
                 <section className="w-full bg-[#fdfaf1] py-24 px-6 md:px-12 lg:px-24 flex flex-col items-center gap-16">
-                    <h2 className="text-[36px] md:text-[56px] font-serif italic text-[#1a1a1a] tracking-tight text-center">
-                        Frequently Asked Questions
+                    <h2 className="text-[36px] md:text-[56px] italic text-[#1a1a1a] tracking-tight text-center">
+                        Frequently Asked questions
                     </h2>
 
                     <div className="w-full max-w-5xl flex flex-col gap-4">
