@@ -116,14 +116,16 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                     </div>
 
                     <div className="w-full max-w-[1600px] mx-auto bg-[#2a3024] rounded-[2px] flex flex-col lg:flex-row overflow-hidden shadow-2xl min-h-[600px]">
-                        <div className="w-full lg:w-1/2 min-h-[400px] relative">
-                            <Image
-                                src={data.section2Image}
-                                alt={`${data.projectName} Property`}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                            />
+                        <div className="w-full lg:w-1/2 min-h-[400px] py-1 pl-1 pr-4 md:py-2 md:pl-2 md:pr-6 lg:py-2 lg:pl-2 lg:pr-8 flex">
+                            <div className="relative w-full h-full min-h-[400px] overflow-hidden">
+                                <Image
+                                    src={data.section2Image}
+                                    alt={`${data.projectName} Property`}
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                />
+                            </div>
                         </div>
 
                         <div className="w-full lg:w-1/2 p-8 md:p-16 flex flex-col justify-center gap-12">
