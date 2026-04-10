@@ -21,7 +21,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
     const [activeTab, setActiveTab] = useState<'location' | 'gallery' | 'floorplans' | 'brochure'>('location');
     const [galleryIdx, setGalleryIdx] = useState(0);
     const [floorPlanIdx, setFloorPlanIdx] = useState(0);
-    const [openFaq, setOpenFaq] = useState<number | null>(0);
+    const [openFaq, setOpenFaq] = useState<number | null>(null);
     const [showOverlay, setShowOverlay] = useState(true);
     const [isManualOpen, setIsManualOpen] = useState(false);
 
@@ -107,12 +107,14 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                 </section>
 
                 {/* Why Project Section */}
-                <section className="w-full bg-[#fdfaf1] py-24 px-6 md:px-12 lg:px-16 flex flex-col items-start gap-12">
-                    <div className="max-w-4xl">
-                        <h2 className="text-3xl md:text-5xl text-[#1a1a1a] font-light tracking-tight leading-tight">
-                            Why {data.projectName} is the <br />
-                            <span className="italic text-4xl md:text-6xl mt-1 block">right choice</span>
-                        </h2>
+                <section className="w-full bg-[#fdfaf1] py-24 px-6 md:px-12 lg:px-16 flex flex-col items-center gap-12">
+                    <div className="w-full max-w-[1600px] flex flex-col gap-12">
+                        <div className="max-w-4xl">
+                            <h2 className="text-3xl md:text-5xl text-[#1a1a1a] font-light tracking-tight leading-tight">
+                                Why {data.projectName} is the <br />
+                                <span className="italic text-4xl md:text-6xl mt-1 block">right choice</span>
+                            </h2>
+                        </div>
                     </div>
 
                     <div className="w-full max-w-[1600px] mx-auto bg-[#2a3024] rounded-[2px] flex flex-col lg:flex-row overflow-hidden shadow-2xl min-h-[600px]">
@@ -255,7 +257,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                         {data.locationDesc}
                                     </p>
 
-                                    <button className="w-[237px] h-[46px] flex items-center justify-center gap-2 text-[#F8EEDB] text-[20px] tracking-[0.1em] uppercase bg-[#D9D9D933] rounded-[16px] border border-white/10 hover:bg-[#D9D9D9]/20 hover:scale-[1.02] hover:border-white/30 transition-all duration-300 whitespace-nowrap">
+                                    <button className="w-[237px] h-[46px] flex items-center justify-center gap-2 text-[#F8EEDB] text-[12px] md:text-[14px] tracking-[0.1em] uppercase bg-[#D9D9D933] rounded-[16px] border border-white/10 hover:bg-[#D9D9D9]/20 hover:scale-[1.02] hover:border-white/30 transition-all duration-300 whitespace-nowrap">
                                         View Location <ArrowRight className="w-5 h-5 ml-1" />
                                     </button>
                                 </div>

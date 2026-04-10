@@ -46,7 +46,7 @@ export default function Home() {
             <h2 className="text-[36px] italic text-[#F8EEDB] tracking-wide mb-2 drop-shadow-md whitespace-nowrap">
               Government Projects
             </h2>
-            <p className="text-[15px] text-[#F8EEDB] tracking-[0.2em] uppercase drop-shadow-sm">
+            <p className="text-[12px] text-[#F8EEDB] tracking-[0.2em] uppercase drop-shadow-sm">
               (Coming Soon)
             </p>
           </div>
@@ -60,7 +60,7 @@ export default function Home() {
             <h2 className="text-[36px] italic text-[#F8EEDB] tracking-wide mb-2 drop-shadow-md whitespace-nowrap">
               Realty Projects
             </h2>
-            <p className="flex items-center justify-center gap-2 text-[15px] text-[#C6AE73] group-hover:text-[#e8b577] tracking-[0.2em] uppercase transition-colors duration-300 drop-shadow-sm font-medium">
+            <p className="flex items-center justify-center gap-2 text-[12px] text-[#C6AE73] group-hover:text-[#e8b577] tracking-[0.2em] uppercase transition-colors duration-300 drop-shadow-sm font-medium">
               ENTER SITE <span className="text-[14px] font-light leading-[0] pb-[2px] group-hover:translate-x-1.5 transition-transform duration-300">→</span>
             </p>
           </div>

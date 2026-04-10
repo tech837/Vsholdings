@@ -234,7 +234,7 @@ export default function RealtyPage() {
         <div className={`relative z-20 pb-16 flex justify-center w-full transition-all ${showContent ? 'duration-1000 delay-500 opacity-100 translate-y-0' : 'duration-0 opacity-0 translate-y-8'}`}>
           <Link
             href={CAROUSEL_DATA[currentImageIdx].link}
-            className="text-[#F8EEDB] text-[20px] w-[385px] h-[46px] flex items-center justify-center tracking-[0.2em] rounded-[16px] uppercase bg-black/20 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/10 hover:scale-[1.05]"
+            className="text-[#F8EEDB] text-[12px] md:text-[14px] w-[300px] md:w-[385px] h-[46px] flex items-center justify-center tracking-[0.2em] rounded-[16px] uppercase bg-black/20 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/10 hover:scale-[1.05]"
           >
             Discover The Collection
           </Link>
@@ -374,7 +374,7 @@ export default function RealtyPage() {
               <div className="mt-2 text-center md:text-left flex justify-center md:justify-start">
                 <button
                   type="button"
-                  className="w-full md:w-[385px] h-[46px] rounded-[16px] text-[#F8EEDB] tracking-[0.2em] text-[20px] uppercase bg-black/20 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]"
+                  className="w-full md:w-[385px] h-[46px] rounded-[16px] text-[#F8EEDB] tracking-[0.2em] text-[12px] md:text-[14px] uppercase bg-black/20 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]"
                 >
                   Enquire Now
                 </button>
