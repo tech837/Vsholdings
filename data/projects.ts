@@ -63,9 +63,9 @@ export const projectsData: Record<string, ProjectData> = {
         featuresDescription: "Strategically located in Namakkal with seamless access to key destinations.",
         features: [
             { icon: 'MapPin', title: 'Prime Location', desc: "Strategically located in Namakkal with seamless access to key destinations." },
-            { icon: 'Waves', title: 'Premium Amenities', desc: "" },
-            { icon: 'Leaf', title: 'Peaceful Living', desc: "" },
-            { icon: 'Layout', title: 'Modern Design', desc: "" }
+            { icon: 'Waves', title: 'Premium Amenities', desc: "Enjoy 15+ curated amenities with private pools and resort-style living." },
+            { icon: 'Leaf', title: 'Peaceful Living', desc: "A calm, green environment designed for comfort and relaxation." },
+            { icon: 'Layout', title: 'Modern Design', desc: "Thoughtfully crafted architecture with refined, contemporary aesthetics." }
         ],
         locationDesc: "Located in the heart of Namakkal, offering quick access to major roads, business hubs, schools, and everyday essentials.",
         mapIframeSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62635.4344485669!2d78.13620353124999!3d11.221531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bab07be2f06827f%3A0xc3fecdf481971f11!2sNamakkal%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1712670000000!5m2!1sen!2sin",
@@ -120,9 +120,9 @@ export const projectsData: Record<string, ProjectData> = {
         featuresDescription: "Strategically located in Namakkal with seamless access to key destinations.",
         features: [
             { icon: 'MapPin', title: 'Prime Location', desc: "Strategically located in Namakkal with seamless access to key destinations." },
-            { icon: 'Waves', title: 'Premium Amenities', desc: "" },
-            { icon: 'Leaf', title: 'Peaceful Living', desc: "" },
-            { icon: 'Layout', title: 'Modern Design', desc: "" }
+            { icon: 'Waves', title: 'Premium Amenities', desc: "Enjoy 15+ curated amenities with private pools and resort-style living." },
+            { icon: 'Leaf', title: 'Peaceful Living', desc: "A calm, green environment designed for comfort and relaxation." },
+            { icon: 'Layout', title: 'Modern Design', desc: "Thoughtfully crafted architecture with refined, contemporary aesthetics." }
         ],
         locationDesc: "Located in the growing hub of Namakkal, Meira Bloom offers unparalleled access to schools, hospitals, and major transit points.",
         mapIframeSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62635.4344485669!2d78.13620353124999!3d11.221531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bab07be2f06827f%3A0xc3fecdf481971f11!2sNamakkal%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1712670000000!5m2!1sen!2sin",

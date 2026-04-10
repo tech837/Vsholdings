@@ -136,19 +136,21 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                 </p>
                             </div>
 
-                            <div className="flex flex-col gap-10">
+                            <div className="flex flex-col gap-6 lg:gap-8">
                                 {data.features.map((feature, idx) => (
-                                    <div key={idx} className={`flex ${feature.desc ? 'items-start' : 'items-center'} gap-6 group ${!feature.desc ? 'opacity-80' : ''}`}>
-                                        <div className={`${feature.desc ? 'mt-1 text-[#b3a17e]' : 'text-[#b3a17e]/70'}`}>
+                                    <div key={idx} className="flex items-start gap-6 group cursor-pointer transition-all duration-300">
+                                        <div className="mt-1 text-[#b3a17e]/80 group-hover:text-[#b3a17e] transition-colors duration-300">
                                             {getIconComponent(feature.icon, "w-6 h-6")}
                                         </div>
-                                        <div>
-                                            <h4 className={`text-lg ${feature.desc ? 'font-medium mb-2' : 'font-light'} text-white ${feature.desc ? 'tracking-wide' : 'tracking-widest'} uppercase text-sm`}>{feature.title}</h4>
-                                            {feature.desc && (
-                                                <p className="text-white/60 text-sm font-light leading-relaxed max-w-sm">
+                                        <div className="flex flex-col">
+                                            <h4 className="text-lg font-light group-hover:font-medium text-white/90 group-hover:text-white tracking-widest group-hover:tracking-wide uppercase text-sm transition-all duration-300">
+                                                {feature.title}
+                                            </h4>
+                                            <div className="max-h-0 opacity-0 overflow-hidden group-hover:max-h-32 group-hover:opacity-100 transition-all duration-500 ease-in-out">
+                                                <p className="text-white/60 text-sm font-light leading-relaxed max-w-sm pt-2">
                                                     {feature.desc}
                                                 </p>
-                                            )}
+                                            </div>
                                         </div>
                                     </div>
                                 ))}
