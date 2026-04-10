@@ -246,17 +246,17 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
 
                                 {/* Text Side */}
                                 <div className="w-full md:w-1/2 flex flex-col gap-10">
-                                    <h3 className="text-3xl md:text-5xl italic text-white tracking-widest uppercase flex items-baseline gap-4">
-                                        <span className="text-3xl md:text-5xl normal-case tracking-widest font-light opacity-80">PRIME</span>
+                                    <h3 className="text-[56px] italic text-[#F8EEDB] tracking-widest uppercase flex items-baseline gap-4">
+                                        <span className="text-[56px] normal-case tracking-widest font-light opacity-80">PRIME</span>
                                         LOCATION
                                     </h3>
 
-                                    <p className="text-[18px] md:text-[20px] text-[#F8EEDB] font-light leading-relaxed tracking-wide max-w-md">
+                                    <p className="text-[20px] text-[#F8EEDB] font-light leading-relaxed tracking-wide max-w-md">
                                         {data.locationDesc}
                                     </p>
 
-                                    <button className="w-fit flex items-center gap-4 text-[#F8EEDB] text-[10px] md:text-xs tracking-[0.3em] py-4 px-10 rounded-full uppercase border border-white/10 bg-white/10 hover:bg-white/20 transition-all duration-300">
-                                        View Location <ArrowRight className="w-4 h-4 ml-2" />
+                                    <button className="w-[237px] h-[46px] flex items-center justify-center gap-2 text-[#F8EEDB] text-[20px] tracking-[0.1em] uppercase bg-[#D9D9D933] rounded-[16px] border border-white/10 hover:bg-[#D9D9D9]/20 hover:scale-[1.02] hover:border-white/30 transition-all duration-300 whitespace-nowrap">
+                                        View Location <ArrowRight className="w-5 h-5 ml-1" />
                                     </button>
                                 </div>
                             </div>
@@ -284,17 +284,17 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                                         filter: isActive ? 'none' : 'blur(2px)',
                                                     }}
                                                 >
-                                                    <div className="relative w-[320px] h-[190px] md:w-[600px] md:h-[360px] lg:w-[955px] lg:h-[580px] bg-white border-[8px] md:border-[12px] lg:border-[20px] border-white shadow-2xl overflow-hidden flex flex-col">
-                                                        <div className="relative flex-grow w-full">
+                                                    <div className="relative w-[320px] h-[190px] md:w-[600px] md:h-[360px] lg:w-[955px] lg:h-[503px] bg-[#F8EEDB] shadow-2xl overflow-hidden flex flex-col p-4">
+                                                        <div className="relative flex-grow w-full overflow-hidden">
                                                             <Image
                                                                 src={img.src}
                                                                 alt={img.title}
                                                                 fill
                                                                 className="object-cover"
-                                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 800px"
+                                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 955px"
                                                             />
                                                         </div>
-                                                        <div className={`h-8 md:h-12 lg:h-20 flex items-center justify-center transition-opacity duration-1000 ${isActive ? "opacity-100" : "opacity-0"}`}>
+                                                        <div className={`pt-4 pb-0 flex items-center justify-center transition-opacity duration-1000 ${isActive ? "opacity-100" : "opacity-0"}`}>
                                                             <p className="text-[#2E311A] italic text-[14px] md:text-[16px] lg:text-[20px] tracking-[0.4em] uppercase">
                                                                 {img.title}
                                                             </p>
@@ -460,7 +460,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
 
                 {/* FAQ Section */}
                 <section className="w-full bg-[#fdfaf1] py-24 px-6 md:px-12 lg:px-24 flex flex-col items-center gap-16">
-                    <h2 className="text-[36px] md:text-[56px] italic text-[#1a1a1a] tracking-tight text-center">
+                    <h2 className="text-[56px] italic text-[#2E311A] tracking-tight text-center">
                         Frequently Asked questions
                     </h2>
 
@@ -470,18 +470,18 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                             return (
                                 <div
                                     key={index}
-                                    className={`w-full rounded-[20px] transition-all duration-500 overflow-hidden ${isOpen ? 'bg-[#C6AE73]' : 'bg-[#C6AE73]/40'}`}
+                                    className={`w-full rounded-[20px] bg-[#C6AE73] transition-all duration-500 overflow-hidden`}
                                 >
                                     <button
                                         onClick={() => setOpenFaq(isOpen ? null : index)}
                                         className="w-full px-8 py-6 flex items-center justify-between text-left group"
                                     >
-                                        <span className={`text-[18px] md:text-[20px] font-light tracking-wide text-[#2E311A]`}>
+                                        <span className={`text-[20px] font-medium font-body tracking-wide text-[#F8EEDB]`}>
                                             {faq.question}
                                         </span>
                                         <ArrowUpRight
-                                            className={`w-8 h-8 transition-transform duration-500 ${isOpen ? 'text-white rotate-45' : 'text-[#1a1a1a]/60 group-hover:text-[#1a1a1a]'}`}
-                                            strokeWidth={1}
+                                            className={`w-[33px] h-[33px] transition-transform duration-500 text-black ${isOpen ? 'rotate-45' : ''}`}
+                                            strokeWidth={1.5}
                                         />
                                     </button>
 

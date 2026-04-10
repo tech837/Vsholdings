@@ -202,11 +202,11 @@ export default function RealtyPage() {
             />
           </Link>
 
-          <div className="absolute left-1/2 top-8 md:top-10 -translate-x-1/2 text-center hidden sm:flex items-center gap-4 drop-shadow-lg whitespace-nowrap">
-            <h1 className="text-sm md:text-2xl font-light tracking-[0.2em] text-white/90">
-              VS HOLDINGS <span className="text-white/40 ml-1 md:ml-3">/</span>
+          <div className="absolute left-1/2 top-8 md:top-10 -translate-x-1/2 text-center hidden sm:flex items-center gap-6 drop-shadow-lg whitespace-nowrap">
+            <h1 className="text-[36px] font-light tracking-[0.2em] text-[#F8EEDB]">
+              VS HOLDINGS <span className="text-[#F8EEDB]/40 ml-4">/</span>
             </h1>
-            <h2 className="text-xl md:text-3xl lg:text-4xl italic text-white tracking-widest uppercase transition-all duration-300">
+            <h2 className="text-[56px] italic text-[#F8EEDB] tracking-widest uppercase transition-all duration-300">
               {CAROUSEL_DATA[currentImageIdx].subtitle}
             </h2>
           </div>
@@ -218,7 +218,7 @@ export default function RealtyPage() {
             onClick={prevImage}
             className="text-white/70 hover:text-white transition-colors p-2"
           >
-            <ChevronLeft className="w-8 h-8 md:w-12 md:h-12" strokeWidth={2.5} />
+            <ChevronLeft className="transition-all" style={{ width: '40px', height: '80px' }} strokeWidth={1.5} />
           </button>
         </div>
         <div className={`absolute top-1/2 -translate-y-1/2 right-4 md:right-8 z-20 transition-all ${showContent ? 'duration-1000 delay-300 opacity-100 translate-x-0' : 'duration-0 opacity-0 translate-x-8'}`}>
@@ -226,7 +226,7 @@ export default function RealtyPage() {
             onClick={nextImage}
             className="text-white/70 hover:text-white transition-colors p-2"
           >
-            <ChevronRight className="w-8 h-8 md:w-12 md:h-12" strokeWidth={2.5} />
+            <ChevronRight className="transition-all" style={{ width: '40px', height: '80px' }} strokeWidth={1.5} />
           </button>
         </div>
 
@@ -234,7 +234,7 @@ export default function RealtyPage() {
         <div className={`relative z-20 pb-16 flex justify-center w-full transition-all ${showContent ? 'duration-1000 delay-500 opacity-100 translate-y-0' : 'duration-0 opacity-0 translate-y-8'}`}>
           <Link
             href={CAROUSEL_DATA[currentImageIdx].link}
-            className="text-white text-xs md:text-sm tracking-[0.2em] py-4 px-10 md:px-14 rounded-[20px] uppercase bg-black/30 backdrop-blur-[2px] border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/10 hover:scale-[1.05]"
+            className="text-[#F8EEDB] text-[20px] w-[385px] h-[46px] flex items-center justify-center tracking-[0.2em] rounded-[16px] uppercase bg-black/20 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/10 hover:scale-[1.05]"
           >
             Discover The Collection
           </Link>
@@ -245,21 +245,21 @@ export default function RealtyPage() {
       <section ref={formSectionRef} className="relative w-full h-screen flex flex-col md:flex-row min-h-[600px] overflow-hidden">
         {/* Left Column - Information */}
         <div className={`w-full md:w-[45%] bg-[#0a0a0a] flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16 md:py-0 relative z-10 transition-all duration-[1500ms] ease-out ${isInView ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
-          <div className="mb-12">
-            <h2 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white tracking-tight leading-none mb-1">
+          <div className="mb-12 font-body">
+            <h2 className="text-[48px] font-bold text-[#F8EEDB] font-body tracking-tight leading-none mb-1">
               EXPRESS
             </h2>
-            <h3 className="text-3xl md:text-4xl lg:text-[42px] font-medium text-[#b38b55] tracking-tight leading-none">
+            <h3 className="text-[48px] font-medium text-[#C6AE73] font-body tracking-tight leading-none">
               YOUR INTEREST
             </h3>
           </div>
 
           <div className="flex gap-6 items-start relative before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[2px] before:bg-white/20 pl-6">
             <div className="flex flex-col gap-6">
-              <h4 className="text-2xl md:text-3xl italic text-white/90 leading-snug tracking-wide max-w-sm">
+              <h4 className="text-[36px] italic text-[#F8EEDB] leading-snug tracking-wide max-w-xl">
                 CURATING EXCELLENCE IN MODERN REAL ESTATE
               </h4>
-              <p className="text-sm md:text-base text-white/60 font-light leading-relaxed tracking-wide max-w-xs md:max-w-sm">
+              <p className="text-[15px] text-[#F8EEDB] font-light leading-relaxed tracking-wide max-w-xs md:max-w-sm">
                 VS Holdings is a premier global real estate group dedicated to
                 redefining luxury and performance across the world's most iconic
                 skylines.
@@ -311,7 +311,7 @@ export default function RealtyPage() {
             <form className="flex flex-col gap-8">
               {/* Name Input */}
               <div className="flex flex-col border-b border-white/20 pb-2 focus-within:border-white/60 transition-colors">
-                <label className="text-white font-semibold tracking-wider text-sm mb-2">
+                <label className="text-[#F8EEDB] font-semibold tracking-wider text-[20px] mb-2">
                   Name
                 </label>
                 <input
@@ -324,7 +324,7 @@ export default function RealtyPage() {
               {/* Country Code & Mobile Input */}
               <div className="flex gap-6">
                 <div className="flex flex-col border-b border-white/20 pb-2 focus-within:border-white/60 transition-colors w-1/3">
-                  <label className="text-white font-semibold tracking-wider text-sm mb-2">
+                  <label className="text-[#F8EEDB] font-semibold tracking-wider text-[20px] mb-2">
                     Country Code
                   </label>
                   <div className="relative flex items-center">
@@ -339,7 +339,7 @@ export default function RealtyPage() {
                 </div>
 
                 <div className="flex flex-col border-b border-white/20 pb-2 focus-within:border-white/60 transition-colors w-2/3">
-                  <label className="text-white font-semibold tracking-wider text-sm mb-2">
+                  <label className="text-[#F8EEDB] font-semibold tracking-wider text-[20px] mb-2">
                     Mobile
                   </label>
                   <input
@@ -352,7 +352,7 @@ export default function RealtyPage() {
 
               {/* Email Input */}
               <div className="flex flex-col border-b border-white/20 pb-2 focus-within:border-white/60 transition-colors">
-                <label className="text-white font-semibold tracking-wider text-sm mb-2">
+                <label className="text-[#F8EEDB] font-semibold tracking-wider text-[20px] mb-2">
                   Email
                 </label>
                 <input
@@ -365,7 +365,7 @@ export default function RealtyPage() {
               {/* Terms text */}
               <p className="text-[10px] text-white/40 tracking-wider">
                 By submitting you agree to our{" "}
-                <a href="#" className="underline hover:text-white/70">
+                <a href="#" className="underline text-[#C6AE73] hover:text-[#C6AE73]/80">
                   terms & conditions
                 </a>
               </p>
@@ -374,7 +374,7 @@ export default function RealtyPage() {
               <div className="mt-2 text-center md:text-left flex justify-center md:justify-start">
                 <button
                   type="button"
-                  className="w-full md:w-[385px] h-[46px] rounded-none text-white tracking-[0.2em] text-xs uppercase bg-black/30 backdrop-blur-[2px] border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]"
+                  className="w-full md:w-[385px] h-[46px] rounded-[16px] text-[#F8EEDB] tracking-[0.2em] text-[20px] uppercase bg-black/20 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/10 hover:scale-[1.02]"
                 >
                   Enquire Now
                 </button>
