@@ -3,19 +3,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { Phone } from "lucide-react";
+import InterestOverlay from "@/components/InterestOverlay";
 
 export default function Home() {
   const [showButtons, setShowButtons] = useState(false);
+  const [isManualOpen, setIsManualOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowButtons(true);
-    }, 5000);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <main className="relative min-h-screen w-full overflow-hidden bg-[#111]">
+      {isManualOpen && <InterestOverlay onComplete={() => setIsManualOpen(false)} backgroundImage="" showCloseButton={true} />}
       {/* Background Video */}
       <video
         autoPlay
@@ -84,6 +88,34 @@ export default function Home() {
             </div>
           </Link>
         </div>
+      </div>
+
+      {/* Floating Contact Sidebar */}
+      <div 
+        className={`fixed right-0 bottom-12 z-50 flex flex-col items-end gap-3 pointer-events-none transition-opacity duration-1000 ${
+          showButtons ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <button
+          onClick={() => setIsManualOpen(true)}
+          className="pointer-events-auto flex items-center justify-center bg-black/40 backdrop-blur-md border border-white/20 border-r-0 rounded-l-[30px] w-14 h-14 text-white/70 hover:text-white hover:w-20 transition-all duration-300 group shadow-2xl"
+        >
+          <Phone className="w-6 h-6 transform group-hover:scale-110 transition-transform" fill="currentColor" strokeWidth={0} />
+        </button>
+        <a
+          href="https://wa.me/1234567890"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pointer-events-auto flex items-center justify-center bg-black/40 backdrop-blur-md border border-white/20 border-r-0 rounded-l-[30px] w-14 h-14 text-white hover:text-white hover:w-20 transition-all duration-300 group shadow-2xl"
+        >
+          <Image
+            src="/whatsapp.svg"
+            alt="WhatsApp"
+            width={24}
+            height={24}
+            className="w-6 h-6 transform group-hover:scale-110 transition-transform brightness-0 invert"
+          />
+        </a>
       </div>
     </main>
   );

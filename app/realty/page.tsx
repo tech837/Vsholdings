@@ -117,10 +117,10 @@ export default function RealtyPage() {
     // Show content slightly after zoom starts
     const timer2 = setTimeout(() => setShowContent(true), 300);
     
-    // Autoscroll to next image after 5 seconds
+    // Autoscroll to next image after 3 seconds
     const scrollTimer = setTimeout(() => {
       setCurrentImageIdx((prev) => (prev + 1) % CAROUSEL_DATA.length);
-    }, 5000);
+    }, 3000);
 
     return () => {
       clearTimeout(timer1);

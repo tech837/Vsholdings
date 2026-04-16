@@ -321,87 +321,56 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                     src={data.gallery.find(g => g.title.includes('BEDROOM'))?.src || data.gallery[0].src}
                                     alt="Unit Availability"
                                     fill
-                                    className="object-cover brightness-[0.80]"
+                                    className="object-cover brightness-[0.85]"
                                 />
-                                
+
                                 {/* Outline Border */}
-                                <div className="absolute inset-4 md:inset-8 border-[3px] md:border-[4px] border-white/90 rounded-[32px] md:rounded-[40px] pointer-events-none flex flex-col justify-between overflow-visible z-10 box-border">
-                                    
-                                    <div className="relative w-full h-full pointer-events-auto">
-                                        
-                                        {/* Availability Floating Tag */}
-                                        <div 
-                                            key={`avail-tag-${floorPlanIdx}`}
-                                            className="absolute animate-in fade-in zoom-in slide-in-from-bottom-2 duration-500 group z-20"
-                                            style={{
-                                                top: ['12%', '22%', '14%', '26%'][floorPlanIdx % 4],
-                                                left: ['8%', '15%', '4%', '18%'][floorPlanIdx % 4]
-                                            }}
-                                        >
-                                            <div className="bg-[#D9D9D933] backdrop-blur-md rounded-[100px] px-3 py-2 md:px-5 md:py-2.5 flex items-center gap-3 md:gap-4 shadow-2xl relative z-10 transition-transform duration-300 hover:scale-[1.02]">
-                                                <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#E6DBCC] flex items-center justify-center border-[2px] border-[#D8C5A5]">
-                                                    {/* House icon matching design */}
-                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B39A70" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline><line x1="12" y1="18" x2="12" y2="18.01"></line></svg>
-                                                </div>
-                                                <div className="flex flex-col pr-2 md:pr-4">
-                                                    <span className="text-[11px] md:text-[13px] text-white/90 tracking-wide font-normal drop-shadow-md">Availability</span>
-                                                    <span className="text-[15px] md:text-[20px] font-bold text-white tracking-wide mt-0.5 drop-shadow-md">
-                                                        {data.floorPlans[floorPlanIdx].availability}
-                                                    </span>
-                                                </div>
+                                <div className="absolute inset-4 md:inset-8 lg:inset-10 border-[5px] border-[#F8EEDB] rounded-[24px] md:rounded-[36px] pointer-events-none flex flex-col items-center justify-center z-10 box-border">
+
+                                    {/* Center Glass Panels */}
+                                    <div className="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-8 pointer-events-auto w-full h-full pb-10">
+
+                                        {/* Availability Panel */}
+                                        <div className="bg-[#D9D9D9]/40 backdrop-blur-[16px] rounded-[12px] md:rounded-[16px] w-[200px] md:w-[240px] py-5 md:py-6 flex flex-col items-center justify-center gap-1.5 md:gap-2 shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-white/30 transition-transform duration-300 hover:scale-[1.02]">
+                                            <div className="w-12 h-12 md:w-[56px] md:h-[56px] rounded-full flex items-center justify-center mb-1 bg-[#E8E1D5]">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B39A70" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                                    <line x1="12" y1="16" x2="12" y2="19.5"></line>
+                                                </svg>
                                             </div>
-                                            
-                                            {/* Line and Dot below Availability tag */}
-                                            <div className="absolute left-1/2 -translate-x-1/2 top-full flex flex-col items-center pointer-events-none">
-                                                <div className="w-[1.5px] h-6 md:h-12 bg-white/90 shadow-[0_0_5px_rgba(255,255,255,0.5)]"></div>
-                                                <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-[#D9D9D9]/80 backdrop-blur-[2px] flex items-center justify-center" style={{ boxShadow: '0 0 10px rgba(0,0,0,0.2)' }}>
-                                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-white rounded-full"></div>
-                                                </div>
-                                            </div>
+                                            <span className="text-[12px] md:text-[14px] text-white/95 font-light tracking-wide drop-shadow-md">Availability</span>
+                                            <span className="text-[16px] md:text-[18px] font-bold text-white tracking-wide drop-shadow-md">
+                                                {data.floorPlans[floorPlanIdx]?.availability || "12 Units Available"}
+                                            </span>
                                         </div>
 
-                                        {/* Build Area Floating Tag */}
-                                        <div 
-                                            key={`area-tag-${floorPlanIdx}`}
-                                            className="absolute animate-in fade-in zoom-in slide-in-from-bottom-2 duration-500 delay-100 group z-20"
-                                            style={{
-                                                top: ['42%', '32%', '50%', '38%'][floorPlanIdx % 4],
-                                                right: ['8%', '16%', '5%', '14%'][floorPlanIdx % 4]
-                                            }}
-                                        >
-                                            <div className="bg-[#D9D9D933] backdrop-blur-md rounded-[100px] px-3 py-2 md:px-5 md:py-2.5 flex items-center gap-3 md:gap-4 shadow-2xl relative z-10 transition-transform duration-300 hover:scale-[1.02]">
-                                                <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#E6DBCC] flex items-center justify-center border-[2px] border-[#D8C5A5]">
-                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B39A70" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-                                                </div>
-                                                <div className="flex flex-col pr-2 md:pr-4">
-                                                    <span className="text-[11px] md:text-[13px] text-white/90 tracking-wide font-normal drop-shadow-md">Build Area</span>
-                                                    <span className="text-[15px] md:text-[20px] font-bold text-white tracking-wide mt-0.5 drop-shadow-md">
-                                                        {data.floorPlans[floorPlanIdx].buildArea}
-                                                    </span>
-                                                </div>
+                                        {/* Built-up Area Panel */}
+                                        <div className="bg-[#D9D9D9]/40 backdrop-blur-[16px] rounded-[12px] md:rounded-[16px] w-[200px] md:w-[240px] py-5 md:py-6 flex flex-col items-center justify-center gap-1.5 md:gap-2 shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-white/30 transition-transform duration-300 hover:scale-[1.02]">
+                                            <div className="w-12 h-12 md:w-[56px] md:h-[56px] rounded-full flex items-center justify-center mb-1 bg-[#E8E1D5]">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B39A70" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                    <rect x="15.5" y="6" width="4.5" height="12" rx="1.5"></rect>
+                                                    <rect x="9.75" y="2" width="4.5" height="16" rx="1.5"></rect>
+                                                    <rect x="4" y="10" width="4.5" height="8" rx="1.5"></rect>
+                                                </svg>
                                             </div>
-                                            
-                                            {/* Line and Dot below Build Area tag */}
-                                            <div className="absolute left-1/2 -translate-x-1/2 top-full flex flex-col items-center pointer-events-none">
-                                                <div className="w-[1.5px] h-5 md:h-10 bg-white/90 shadow-[0_0_5px_rgba(255,255,255,0.5)]"></div>
-                                                <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-[#D9D9D9]/80 backdrop-blur-[2px] flex items-center justify-center" style={{ boxShadow: '0 0 10px rgba(0,0,0,0.2)' }}>
-                                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-white rounded-full"></div>
-                                                </div>
-                                            </div>
+                                            <span className="text-[12px] md:text-[14px] text-white/95 font-light tracking-wide drop-shadow-md">Built-up Area</span>
+                                            <span className="text-[16px] md:text-[18px] font-bold text-white tracking-wide drop-shadow-md">
+                                                {data.floorPlans[floorPlanIdx]?.buildArea || "1100 sq.ft"}
+                                            </span>
                                         </div>
+
                                     </div>
-                                    
-                                    {/* Action Buttons row embedded INSIDE the bottom border */}
-                                    <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 w-max max-w-[95%] flex flex-wrap justify-center gap-3 md:gap-5 pointer-events-auto z-30">
+
+                                    {/* Action Buttons row embedded near the bottom */}
+                                    <div className="absolute bottom-5 md:bottom-7 left-1/2 -translate-x-1/2 w-max max-w-[95%] flex flex-wrap justify-center gap-3 md:gap-4 pointer-events-auto z-30">
                                         {data.floorPlans.map((plan, idx) => (
                                             <button
                                                 key={idx}
                                                 onClick={() => setFloorPlanIdx(idx)}
-                                                className={`px-5 py-3 md:px-8 md:py-4 rounded-[100px] text-[10px] md:text-[13px] tracking-[0.15em] font-semibold uppercase transition-all duration-300 backdrop-blur-lg whitespace-nowrap shadow-xl border ${
-                                                    floorPlanIdx === idx 
-                                                    ? "bg-white text-[#1a1a1a] shadow-[0_10px_30px_rgba(255,255,255,0.3)] scale-105 border-white" 
-                                                    : "bg-black/20 text-white border-white/50 hover:bg-white/30"
-                                                }`}
+                                                className={`px-5 py-2.5 md:px-7 md:py-3.5 rounded-[8px] md:rounded-[10px] text-[12px] md:text-[16px] tracking-wide font-normal transition-all duration-300 backdrop-blur-md whitespace-nowrap shadow-lg border border-white/20 ${floorPlanIdx === idx
+                                                    ? "bg-[#EAEAEA] text-[#1a1a1a] shadow-[0_10px_30px_rgba(255,255,255,0.4)] scale-[1.02] border-transparent"
+                                                    : "bg-[#D9D9D9]/40 text-black md:text-white/90 hover:bg-[#D9D9D9]/60 hover:text-white"
+                                                    }`}
                                             >
                                                 {plan.label}
                                             </button>
