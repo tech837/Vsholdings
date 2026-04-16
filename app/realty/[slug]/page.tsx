@@ -330,7 +330,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                     {/* Center Glass Panels */}
                                     <div className="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-8 pointer-events-auto w-full h-full pb-10">
 
-                                        {/* Availability Panel */}
+                                        {/* Availability Panel*/}
                                         <div className="bg-[#D9D9D9]/40 backdrop-blur-[16px] rounded-[12px] md:rounded-[16px] w-[200px] md:w-[240px] py-5 md:py-6 flex flex-col items-center justify-center gap-1.5 md:gap-2 shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-white/30 transition-transform duration-300 hover:scale-[1.02]">
                                             <div className="w-12 h-12 md:w-[56px] md:h-[56px] rounded-full flex items-center justify-center mb-1 bg-[#E8E1D5]">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B39A70" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
