@@ -1,13 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [showButtons, setShowButtons] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowButtons(true);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <main className="relative min-h-screen w-full overflow-hidden flex items-end justify-center bg-[#111] pb-6 sm:pb-10">
-
-
-
+    <main className="relative min-h-screen w-full overflow-hidden bg-[#111]">
       {/* Background Video */}
       <video
         autoPlay
@@ -35,41 +43,48 @@ export default function Home() {
         />
       </div>
 
-      {/* Bottom Glassmorphism Buttons Container */}
-      <div className="relative z-10 flex flex-col md:flex-row gap-5 md:gap-8 lg:gap-12 items-center w-full max-w-6xl px-6 justify-center">
-
-        {/* Left Button - Government Projects */}
-        <div className="group relative block w-[362px] h-[114px] transition-transform duration-500 hover:scale-[1.02] cursor-default">
-          <div
-            className="w-full h-full bg-black/20 backdrop-blur-md border border-white/20 rounded-[20px] shadow-[0_8px_32px_rgba(0,0,0,0.25)] flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:bg-black/30 group-hover:border-white/30"
-          >
-            <h2 className="text-[36px] italic text-[#F8EEDB] tracking-wide mb-2 drop-shadow-md whitespace-nowrap">
-              Government Projects
-            </h2>
-            <p className="text-[12px] text-[#F8EEDB] tracking-[0.2em] uppercase drop-shadow-sm">
-              (Coming Soon)
-            </p>
+      {/* Buttons Overlay */}
+      <div 
+        className={`absolute inset-0 z-10 flex flex-col md:flex-row pointer-events-none transition-opacity duration-1000 ${
+          showButtons ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {/* Left Half */}
+        <div className="flex-1 flex items-center justify-center pointer-events-auto">
+          {/* Left Button - Government Projects */}
+          <div className="group relative w-[460px] md:w-[480px] lg:w-[500px] max-w-[90vw] h-[120px] flex items-center justify-center transition-transform duration-500 hover:scale-[1.02] cursor-default">
+            <div
+              className="absolute inset-0 bg-transparent border border-transparent rounded-[20px] transition-all duration-300 group-hover:bg-black/20 group-hover:backdrop-blur-md group-hover:border-white/20 group-hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
+            ></div>
+            <div className="relative z-10 text-center">
+              <h2 className="text-[28px] md:text-[34px] lg:text-[36px] italic text-[#F8EEDB] tracking-[0.08em] mb-2 drop-shadow-md whitespace-nowrap">
+                GOVERNMENT PROJECTS
+              </h2>
+              <p className="text-[12px] text-[#F8EEDB] tracking-[0.2em] uppercase drop-shadow-sm">
+                (Coming Soon)
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Right Button - Realty Projects */}
-        <Link href="/realty" className="group relative block w-[362px] h-[114px] transition-transform duration-500 hover:scale-[1.02] cursor-pointer">
-          <div
-            className="w-full h-full bg-black/20 backdrop-blur-md border border-white/20 rounded-[20px] shadow-[0_8px_32px_rgba(0,0,0,0.25)] flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:bg-black/30 group-hover:border-white/30"
-          >
-            <h2 className="text-[36px] italic text-[#F8EEDB] tracking-wide mb-2 drop-shadow-md whitespace-nowrap">
-              Realty Projects
-            </h2>
-            <p className="flex items-center justify-center gap-2 text-[12px] text-[#C6AE73] group-hover:text-[#e8b577] tracking-[0.2em] uppercase transition-colors duration-300 drop-shadow-sm font-medium">
-              ENTER SITE <span className="text-[14px] font-light leading-[0] pb-[2px] group-hover:translate-x-1.5 transition-transform duration-300">→</span>
-            </p>
-          </div>
-        </Link>
-
-
+        {/* Right Half */}
+        <div className="flex-1 flex items-center justify-center pointer-events-auto">
+          {/* Right Button - Realty Projects */}
+          <Link href="/realty" className="group relative w-[460px] md:w-[480px] lg:w-[500px] max-w-[90vw] h-[120px] flex items-center justify-center transition-transform duration-500 hover:scale-[1.02] cursor-pointer">
+            <div
+              className="absolute inset-0 bg-transparent border border-transparent rounded-[20px] transition-all duration-300 group-hover:bg-black/20 group-hover:backdrop-blur-md group-hover:border-white/20 group-hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
+            ></div>
+            <div className="relative z-10 text-center">
+              <h2 className="text-[28px] md:text-[34px] lg:text-[36px] italic text-[#F8EEDB] tracking-[0.08em] mb-2 drop-shadow-md whitespace-nowrap">
+                REALTY PROJECTS
+              </h2>
+              <p className="flex items-center justify-center gap-2 text-[12px] text-[#C6AE73] group-hover:text-[#e8b577] tracking-[0.2em] uppercase transition-colors duration-300 drop-shadow-sm font-medium">
+                ENTER SITE <span className="text-[14px] font-light leading-[0] pb-[2px] group-hover:translate-x-1.5 transition-transform duration-300">→</span>
+              </p>
+            </div>
+          </Link>
+        </div>
       </div>
-
-
     </main>
   );
 }

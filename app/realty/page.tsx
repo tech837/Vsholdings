@@ -112,14 +112,20 @@ export default function RealtyPage() {
     setIsLoaded(false);
     setShowContent(false);
 
-    // Start zoom out after 1 second
-    const timer1 = setTimeout(() => setIsLoaded(true), 1000);
+    // Start zoom out quickly
+    const timer1 = setTimeout(() => setIsLoaded(true), 50);
     // Show content slightly after zoom starts
-    const timer2 = setTimeout(() => setShowContent(true), 1200);
+    const timer2 = setTimeout(() => setShowContent(true), 300);
+    
+    // Autoscroll to next image after 5 seconds
+    const scrollTimer = setTimeout(() => {
+      setCurrentImageIdx((prev) => (prev + 1) % CAROUSEL_DATA.length);
+    }, 5000);
 
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
+      clearTimeout(scrollTimer);
     };
   }, [currentImageIdx]);
 
@@ -168,11 +174,11 @@ export default function RealtyPage() {
       {/* Top Section - Hero Carousel */}
       <section className="relative w-full h-screen min-h-[600px] flex flex-col justify-between overflow-hidden">
         {/* Background Image Carousel Container with Zoom Animation */}
-        <div className={`absolute inset-0 w-full h-full transition-transform duration-[2000ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${!isLoaded ? "scale-[1.15]" : "scale-100"}`}>
+        <div className={`absolute inset-0 w-full h-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.25,1,0.5,1)] ${!isLoaded ? "scale-[1.05]" : "scale-100"}`}>
           {CAROUSEL_DATA.map((item, idx) => (
             <div
               key={item.src}
-              className={`absolute inset-0 transition-opacity duration-1000 z-0 ${idx === currentImageIdx ? "opacity-100" : "opacity-0"}`}
+              className={`absolute inset-0 transition-opacity duration-700 z-0 ${idx === currentImageIdx ? "opacity-100" : "opacity-0"}`}
             >
               <Image
                 src={item.src}
@@ -187,10 +193,10 @@ export default function RealtyPage() {
         </div>
 
         {/* Overlay Dark Gradient */}
-        <div className={`absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 z-10 pointer-events-none transition-opacity ${showContent ? "duration-1000 opacity-100" : "duration-0 opacity-0"}`}></div>
+        <div className={`absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 z-10 pointer-events-none transition-opacity ${showContent ? "duration-700 opacity-100" : "duration-0 opacity-0"}`}></div>
 
         {/* Header / Logo */}
-        <div className={`relative z-20 flex pt-8 px-6 md:px-12 w-full justify-between items-start transition-all ${showContent ? 'duration-1000 opacity-100 translate-y-0' : 'duration-0 opacity-0 -translate-y-4'}`}>
+        <div className={`relative z-20 flex pt-8 px-6 md:px-12 w-full justify-between items-start transition-all ${showContent ? 'duration-700 opacity-100 translate-y-0' : 'duration-0 opacity-0 -translate-y-4'}`}>
           <Link href="/">
             <Image
               src="/images/Home_Page/vs%20logo%201.png"
@@ -213,7 +219,7 @@ export default function RealtyPage() {
         </div>
 
         {/* Carousel Controls */}
-        <div className={`absolute top-1/2 -translate-y-1/2 left-4 md:left-8 z-20 transition-all ${showContent ? 'duration-1000 delay-300 opacity-100 translate-x-0' : 'duration-0 opacity-0 -translate-x-8'}`}>
+        <div className={`absolute top-1/2 -translate-y-1/2 left-4 md:left-8 z-20 transition-all ${showContent ? 'duration-700 delay-150 opacity-100 translate-x-0' : 'duration-0 opacity-0 -translate-x-8'}`}>
           <button
             onClick={prevImage}
             className="text-white/70 hover:text-white transition-colors p-2"
@@ -221,7 +227,7 @@ export default function RealtyPage() {
             <ChevronLeft className="transition-all" style={{ width: '40px', height: '80px' }} strokeWidth={1.5} />
           </button>
         </div>
-        <div className={`absolute top-1/2 -translate-y-1/2 right-4 md:right-8 z-20 transition-all ${showContent ? 'duration-1000 delay-300 opacity-100 translate-x-0' : 'duration-0 opacity-0 translate-x-8'}`}>
+        <div className={`absolute top-1/2 -translate-y-1/2 right-4 md:right-8 z-20 transition-all ${showContent ? 'duration-700 delay-150 opacity-100 translate-x-0' : 'duration-0 opacity-0 translate-x-8'}`}>
           <button
             onClick={nextImage}
             className="text-white/70 hover:text-white transition-colors p-2"
@@ -231,7 +237,7 @@ export default function RealtyPage() {
         </div>
 
         {/* Bottom Button */}
-        <div className={`relative z-20 pb-16 flex justify-center w-full transition-all ${showContent ? 'duration-1000 delay-500 opacity-100 translate-y-0' : 'duration-0 opacity-0 translate-y-8'}`}>
+        <div className={`relative z-20 pb-16 flex justify-center w-full transition-all ${showContent ? 'duration-700 delay-300 opacity-100 translate-y-0' : 'duration-0 opacity-0 translate-y-8'}`}>
           <Link
             href={CAROUSEL_DATA[currentImageIdx].link}
             className="text-[#F8EEDB] text-[12px] md:text-[14px] w-[300px] md:w-[385px] h-[46px] flex items-center justify-center tracking-[0.2em] rounded-[16px] uppercase bg-black/20 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/10 hover:scale-[1.05]"

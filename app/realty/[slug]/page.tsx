@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState, use } from "react";
 import { notFound } from "next/navigation";
 import InterestOverlay from "@/components/InterestOverlay";
-import { Phone, MessageCircle, ChevronLeft, ChevronRight, MapPin, Waves, Leaf, Layout, ArrowRight, ArrowUpRight } from "lucide-react";
+import { Phone, MessageCircle, ChevronLeft, ChevronRight, ChevronDown, MapPin, Waves, Leaf, Layout, ArrowRight, ArrowUpRight } from "lucide-react";
 import { projectsData } from "@/data/projects";
 
 // Next.js 15+ dynamic route props
@@ -17,20 +17,19 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
         notFound();
     }
 
-    const [currentIdx, setCurrentIdx] = useState(0);
-    const [activeTab, setActiveTab] = useState<'location' | 'gallery' | 'floorplans' | 'brochure'>('location');
+    const [activeTab, setActiveTab] = useState<'gallery' | 'floorplans' | 'location' | 'brochure' | 'availability'>('gallery');
     const [galleryIdx, setGalleryIdx] = useState(0);
     const [floorPlanIdx, setFloorPlanIdx] = useState(0);
     const [openFaq, setOpenFaq] = useState<number | null>(null);
     const [showOverlay, setShowOverlay] = useState(true);
     const [isManualOpen, setIsManualOpen] = useState(false);
+    const [isFloorPlanDropdownOpen, setIsFloorPlanDropdownOpen] = useState(false);
 
-    const nextSlide = () => {
-        setCurrentIdx((prev) => (prev + 1) % data.carouselImages.length);
-    };
-
-    const prevSlide = () => {
-        setCurrentIdx((prev) => (prev - 1 + data.carouselImages.length) % data.carouselImages.length);
+    const handleOverlayComplete = (setOverlayOpenState: (open: boolean) => void) => {
+        setOverlayOpenState(false);
+        setTimeout(() => {
+            document.getElementById('dynamic-content')?.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
     };
 
     const nextGallery = () => {
@@ -41,20 +40,10 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
         setGalleryIdx((prev) => (prev - 1 + data.gallery.length) % data.gallery.length);
     };
 
-    const getIconComponent = (iconName: string, className: string) => {
-        switch (iconName) {
-            case 'MapPin': return <MapPin className={className} strokeWidth={1.5} />;
-            case 'Waves': return <Waves className={className} strokeWidth={1.5} />;
-            case 'Leaf': return <Leaf className={className} strokeWidth={1.5} />;
-            case 'Layout': return <Layout className={className} strokeWidth={1.5} />;
-            default: return <MapPin className={className} strokeWidth={1.5} />;
-        }
-    };
-
     return (
         <>
-            {showOverlay && <InterestOverlay onComplete={() => setShowOverlay(false)} backgroundImage={data.overlayBgImage} showCloseButton={false} />}
-            {isManualOpen && <InterestOverlay onComplete={() => setIsManualOpen(false)} backgroundImage={data.overlayBgImage} showCloseButton={true} />}
+            {showOverlay && <InterestOverlay onComplete={() => handleOverlayComplete(setShowOverlay)} backgroundImage={data.overlayBgImage} showCloseButton={false} />}
+            {isManualOpen && <InterestOverlay onComplete={() => handleOverlayComplete(setIsManualOpen)} backgroundImage={data.overlayBgImage} showCloseButton={true} />}
             <main className="min-h-screen w-full bg-[#0a0a0a] text-white flex flex-col relative overflow-x-hidden">
                 {/* Hero Section */}
                 <section className="h-screen w-full relative flex-shrink-0">
@@ -106,141 +95,15 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                     </div>
                 </section>
 
-                {/* Why Project Section */}
-                <section className="w-full bg-[#F8EEDB] min-h-screen pt-4 pb-10 md:pt-8 md:pb-16 px-6 md:px-12 lg:px-16 flex flex-col items-center justify-start gap-2">
-                    <div className="w-full max-w-[1800px] flex flex-col">
-                        <div className="max-w-4xl">
-                            <h2 className="text-3xl md:text-5xl text-[#1a1a1a] font-light tracking-tight leading-tight">
-                                Why {data.projectName} is the <br />
-                                <span className="italic text-4xl md:text-6xl mt-1 block">right choice</span>
-                            </h2>
-                        </div>
-                    </div>
 
-                    <div className="w-full max-w-[1800px] mx-auto bg-[#2E311A] rounded-[2px] flex flex-col lg:flex-row overflow-hidden shadow-2xl min-h-[500px] lg:h-[70vh]">
-                        <div className="w-full lg:w-1/2 min-h-[400px] py-1 pl-1 pr-0 md:py-2 md:pl-2 md:pr-0 lg:py-2 lg:pl-2 lg:pr-0 flex">
-                            <div className="relative w-full h-full min-h-[400px] overflow-hidden">
-                                <Image
-                                    src={data.section2Image}
-                                    alt={`${data.projectName} Property`}
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="w-full lg:w-1/2 p-8 md:px-12 md:pt-8 md:pb-12 lg:pl-6 lg:pr-32 lg:pt-8 lg:pb-10 flex flex-col justify-between">
-                            <div>
-                                <h3 className="text-2xl md:text-[40px] text-[#C6AE73] font-light tracking-wide mb-1 leading-tight">
-                                    Beyond a residence —
-                                </h3>
-                                <p className="italic text-3xl md:text-[40px] text-[#C6AE73] tracking-wide leading-tight">
-                                    your lifestyle upgrade
-                                </p>
-                            </div>
-
-                            <div className="flex flex-col">
-                                {data.features.map((feature, idx) => (
-                                    <div key={idx} className={`flex flex-col py-4 lg:py-5 border-b border-white/10 group cursor-pointer transition-all duration-300`}>
-                                        <div className="flex items-start gap-6">
-                                            <div className="mt-1 text-[#7B7B7B] group-hover:text-[#C6AE73] transition-colors duration-300">
-                                                {getIconComponent(feature.icon, "w-6 h-6")}
-                                            </div>
-                                            <div className="flex flex-col">
-                                                <h4 className="font-light group-hover:font-medium text-[#7B7B7B] group-hover:text-[#F8EEDB] tracking-widest text-[16px] md:text-[20px] uppercase transition-all duration-300">
-                                                    {feature.title}
-                                                </h4>
-                                                <div className="max-h-0 opacity-0 overflow-hidden group-hover:max-h-32 group-hover:opacity-100 transition-all duration-500 ease-in-out">
-                                                    <p className="text-white/60 text-sm font-light leading-relaxed max-w-sm pt-2">
-                                                        {feature.desc}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Elevated Living Section */}
-                <section className="w-full h-screen relative flex items-center overflow-hidden">
-                    <div className="absolute inset-0 z-0 h-full w-full">
-                        <Image
-                            src={data.elevatedBgImage || data.section2Image}
-                            alt="Elevated Living Background"
-                            fill
-                            className="object-cover"
-                            sizes="100vw"
-                        />
-                        <div className="absolute inset-0 bg-black/60 z-10"></div>
-                    </div>
-
-                    <div className="relative z-20 w-full px-6 md:px-12 lg:px-24 flex flex-col md:flex-row items-center gap-12 md:justify-between">
-                        <div className="w-full md:w-[45%] flex flex-col gap-3">
-                            <h4 className="italic text-base md:text-xl text-white/80 tracking-widest uppercase">
-                                {data.projectName}
-                            </h4>
-                            <h3 className="text-2xl md:text-3xl lg:text-4xl font-light tracking-[0.2em] text-white leading-none whitespace-nowrap mb-1 uppercase">
-                                ELEVATED LIVING
-                            </h3>
-                            <p className="text-[9px] md:text-[10px] tracking-[0.4em] uppercase text-white/50 mb-6">
-                                {data.locationLine2}
-                            </p>
-                            <button
-                                onClick={() => {
-                                    setActiveTab('gallery');
-                                    document.getElementById('dynamic-content')?.scrollIntoView({ behavior: 'smooth' });
-                                }}
-                                className="w-[300px] md:w-[358px] h-[46px] flex items-center justify-center text-white text-[10px] md:text-xs tracking-[0.3em] uppercase bg-black/30 backdrop-blur-[2px] border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all duration-300 hover:bg-white/10 hover:scale-[1.02] rounded-none"
-                            >
-                                EXPLORE THE COLLECTION
-                            </button>
-                        </div>
-
-                        <div className="w-full md:w-[57%] lg:w-[855px] aspect-[16/10] relative md:-ml-12 lg:-ml-24 group">
-                            <div className="w-full h-full overflow-hidden shadow-2xl rounded-sm relative">
-                                {data.carouselImages.map((img, idx) => (
-                                    <div
-                                        key={idx}
-                                        className={`absolute inset-0 transition-opacity duration-700 ${idx === currentIdx ? "opacity-100" : "opacity-0"}`}
-                                    >
-                                        <Image
-                                            src={img}
-                                            alt={`Gallery ${idx}`}
-                                            fill
-                                            className="object-cover"
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 60vw"
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-
-                            <button
-                                onClick={prevSlide}
-                                className="absolute -left-16 md:-left-20 top-1/2 -translate-y-1/2 z-30 p-2 text-white/30 hover:text-white transition-colors"
-                            >
-                                <ChevronLeft className="w-10 h-10 md:w-20 md:h-20" strokeWidth={1} />
-                            </button>
-                            <button
-                                onClick={nextSlide}
-                                className="absolute -right-16 md:-right-20 top-1/2 -translate-y-1/2 z-30 p-2 text-white/30 hover:text-white transition-colors"
-                            >
-                                <ChevronRight className="w-10 h-10 md:w-20 md:h-20" strokeWidth={1} />
-                            </button>
-                        </div>
-                    </div>
-                </section>
 
                 {/* Dynamic Content Section (Location / Gallery) */}
-                <section id="dynamic-content" className="w-full bg-black py-12 md:py-20 px-6 md:px-12 lg:px-24 flex flex-col gap-12 relative min-h-[800px]">
+                <section id="dynamic-content" className="w-full bg-black py-8 md:py-12 px-6 md:px-12 lg:px-24 flex flex-col justify-between gap-6 relative h-[100svh] min-h-[750px]">
                     {activeTab === 'location' ? (
-                        <div key="location" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                            <div className="flex flex-col md:flex-row items-center justify-between gap-16">
+                        <div key="location" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-grow flex items-center justify-center">
+                            <div className="flex flex-col md:flex-row items-center justify-between gap-12 w-full">
                                 {/* Map Side */}
-                                <div className="w-full md:w-1/2 aspect-square max-w-[600px] relative rounded-sm overflow-hidden border border-white/10">
+                                <div className="w-full md:w-1/2 aspect-square max-w-[450px] relative rounded-sm overflow-hidden border border-white/10">
                                     <iframe
                                         src={data.mapIframeSrc}
                                         width="100%"
@@ -270,9 +133,9 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                             </div>
                         </div>
                     ) : activeTab === 'gallery' ? (
-                        <div key="gallery" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                            <div className="w-full flex flex-col items-center justify-center gap-12">
-                                <div className="relative w-full h-[650px] flex items-center justify-center overflow-visible">
+                        <div key="gallery" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-grow flex flex-col justify-center">
+                            <div className="w-full flex flex-col items-center justify-center gap-6">
+                                <div className="relative w-full h-[400px] md:h-[480px] flex items-center justify-center overflow-visible">
                                     <div className="relative w-full max-w-7xl h-full flex items-center justify-center">
                                         {data.gallery.map((img, i) => {
                                             let offset = i - galleryIdx;
@@ -280,19 +143,20 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                             if (offset > Math.floor(data.gallery.length / 2)) offset -= data.gallery.length;
 
                                             const isActive = offset === 0;
+                                            const isVisible = Math.abs(offset) <= 1;
 
                                             return (
                                                 <div
                                                     key={i}
                                                     className={`absolute transition-all duration-700 ease-in-out flex flex-col items-center
-                                                    ${isActive ? "z-30 opacity-100 scale-100" : "z-10 opacity-40 scale-75"}
+                                                    ${isActive ? "z-30 opacity-100 scale-100" : isVisible ? "z-10 opacity-40 scale-75" : "z-0 opacity-0 scale-50 pointer-events-none"}
                                                 `}
                                                     style={{
                                                         transform: `translateX(${offset * 40}%) scale(${isActive ? 1 : 0.8})`,
                                                         filter: isActive ? 'none' : 'blur(2px)',
                                                     }}
                                                 >
-                                                    <div className="relative w-[320px] h-[190px] md:w-[600px] md:h-[360px] lg:w-[955px] lg:h-[503px] bg-[#F8EEDB] shadow-2xl overflow-hidden flex flex-col p-4">
+                                                    <div className="relative w-[320px] h-[190px] md:w-[500px] md:h-[300px] lg:w-[800px] lg:h-[420px] bg-[#F8EEDB] shadow-2xl overflow-hidden flex flex-col p-4">
                                                         <div className="relative flex-grow w-full overflow-hidden">
                                                             <Image
                                                                 src={img.src}
@@ -330,14 +194,14 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                             </div>
                         </div>
                     ) : activeTab === 'floorplans' ? (
-                        <div key="floorplans" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                            <div className="w-full flex items-center justify-center py-6 md:py-10 px-4">
-                                <div className="bg-[#d9d9d9] w-full max-w-[1400px] h-auto md:h-[650px] relative flex flex-col items-center justify-center rounded-sm overflow-hidden py-12 md:py-0">
+                        <div key="floorplans" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-grow flex items-center justify-center">
+                            <div className="w-full flex items-center justify-center py-2 px-4">
+                                <div className="bg-[#d9d9d9] w-full max-w-[1400px] h-auto md:h-[480px] relative flex flex-col items-center justify-center rounded-sm overflow-hidden py-8 md:py-0">
                                     {/* Header Text - Aligned Left */}
-                                    <p className="md:absolute md:top-14 md:left-14 text-[#1a1a1a]/70 text-[10px] md:text-sm tracking-[0.2em] text-left max-w-md font-light uppercase px-6 md:px-0 mb-8 md:mb-0" dangerouslySetInnerHTML={{ __html: data.floorPlansText }}>
+                                    <p className="md:absolute md:top-8 md:left-10 text-[#1a1a1a]/70 text-[10px] md:text-sm tracking-[0.2em] text-left max-w-md font-light uppercase px-6 md:px-0 mb-4 md:mb-0" dangerouslySetInnerHTML={{ __html: data.floorPlansText }}>
                                     </p>
 
-                                    <div className="relative w-full h-[500px] flex items-center justify-center overflow-visible mt-16 md:mt-20">
+                                    <div className="relative w-full h-[300px] md:h-[360px] flex items-center justify-center overflow-visible md:mt-8">
                                         {data.floorPlans.map((plan, i) => {
                                             let offset = i - floorPlanIdx;
                                             if (offset < -Math.floor(data.floorPlans.length / 2)) offset += data.floorPlans.length;
@@ -350,14 +214,13 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                                 <div
                                                     key={i}
                                                     className={`absolute transition-all duration-700 ease-in-out
-                                                    ${isActive ? "z-30 scale-115 opacity-100" : "z-10 scale-75 opacity-40"}
-                                                    ${!isVisible ? "opacity-0 pointer-events-none" : ""}
+                                                    ${isActive ? "z-30 scale-115 opacity-100" : isVisible ? "z-10 scale-75 opacity-40" : "z-0 scale-50 opacity-0 pointer-events-none"}
                                                 `}
                                                     style={{
                                                         transform: `translateX(${offset * 105}%)`,
                                                     }}
                                                 >
-                                                    <div className={`relative w-[300px] h-[200px] md:w-[540px] md:h-[360px] ${isActive ? "bg-[#d5c5a1] shadow-2xl" : "bg-[#2a3024]"} p-2 transition-all duration-700 flex items-center justify-center`}>
+                                                    <div className={`relative w-[300px] h-[200px] md:w-[420px] md:h-[280px] ${isActive ? "bg-[#d5c5a1] shadow-2xl" : "bg-[#2a3024]"} p-2 transition-all duration-700 flex items-center justify-center`}>
                                                         <div className="relative w-full h-full">
                                                             <Image
                                                                 src={plan.src}
@@ -389,19 +252,42 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                         </button>
                                     </div>
 
-                                    {/* Label Bottom Right with line */}
-                                    <div className="absolute right-10 bottom-10 hidden md:flex flex-col items-end gap-1 text-right">
-                                        <div className="w-[120px] md:w-[180px] h-[1px] bg-[#1a1a1a]/30"></div>
-                                        <span className="text-[#1a1a1a] text-lg md:text-xl font-bold tracking-[0.2em] uppercase">
-                                            {data.floorPlans[floorPlanIdx].label}
-                                        </span>
+                                    {/* Dropdown Bottom Right with line */}
+                                    <div className="absolute right-8 bottom-4 hidden md:flex flex-col items-end gap-2 text-right z-50">
+                                        <div className="w-[120px] md:w-[180px] h-[1px] bg-[#1a1a1a]/30 mb-1"></div>
+                                        <div className="relative">
+                                            <button
+                                                onClick={() => setIsFloorPlanDropdownOpen(!isFloorPlanDropdownOpen)}
+                                                className="flex items-center gap-2 text-[#1a1a1a] text-lg md:text-xl font-bold tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
+                                            >
+                                                {data.floorPlans[floorPlanIdx].label}
+                                                <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isFloorPlanDropdownOpen ? 'rotate-180' : ''}`} />
+                                            </button>
+
+                                            <div
+                                                className={`absolute bottom-full right-0 mb-4 w-[280px] bg-[#F8EEDB] shadow-2xl rounded-sm overflow-hidden transition-all duration-300 origin-bottom ${isFloorPlanDropdownOpen ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}
+                                            >
+                                                {data.floorPlans.map((plan, idx) => (
+                                                    <button
+                                                        key={idx}
+                                                        onClick={() => {
+                                                            setFloorPlanIdx(idx);
+                                                            setIsFloorPlanDropdownOpen(false);
+                                                        }}
+                                                        className={`w-full text-right px-6 py-4 text-[10px] md:text-xs tracking-[0.2em] uppercase border-b border-[#2E311A]/10 last:border-none transition-colors hover:bg-[#C6AE73]/20 ${floorPlanIdx === idx ? 'bg-[#C6AE73]/30 text-[#1a1a1a] font-bold' : 'text-[#1a1a1a]/80 font-light'}`}
+                                                    >
+                                                        {plan.label}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     ) : activeTab === 'brochure' ? (
-                        <div key="brochure" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-                            <div className="w-full flex items-center justify-center min-h-[600px] px-4 md:px-0">
+                        <div key="brochure" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-grow flex items-center justify-center">
+                            <div className="w-full flex items-center justify-center py-4 px-4 md:px-0">
                                 <div className="relative w-full max-w-6xl aspect-[16/8] md:aspect-[21/9] rounded-sm overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]">
                                     <Image
                                         src={data.brochureBg}
@@ -427,6 +313,103 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                 </div>
                             </div>
                         </div>
+                    ) : activeTab === 'availability' ? (
+                        <div key="availability" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-grow flex flex-col items-center justify-center py-4 md:py-8">
+                            <div className="relative w-full max-w-7xl h-[55vh] min-h-[450px] max-h-[650px] rounded-none overflow-hidden shadow-2xl my-auto">
+                                {/* Background Image */}
+                                <Image
+                                    src={data.gallery.find(g => g.title.includes('BEDROOM'))?.src || data.gallery[0].src}
+                                    alt="Unit Availability"
+                                    fill
+                                    className="object-cover brightness-[0.80]"
+                                />
+                                
+                                {/* Outline Border */}
+                                <div className="absolute inset-4 md:inset-8 border-[3px] md:border-[4px] border-white/90 rounded-[32px] md:rounded-[40px] pointer-events-none flex flex-col justify-between overflow-visible z-10 box-border">
+                                    
+                                    <div className="relative w-full h-full pointer-events-auto">
+                                        
+                                        {/* Availability Floating Tag */}
+                                        <div 
+                                            key={`avail-tag-${floorPlanIdx}`}
+                                            className="absolute animate-in fade-in zoom-in slide-in-from-bottom-2 duration-500 group z-20"
+                                            style={{
+                                                top: ['12%', '22%', '14%', '26%'][floorPlanIdx % 4],
+                                                left: ['8%', '15%', '4%', '18%'][floorPlanIdx % 4]
+                                            }}
+                                        >
+                                            <div className="bg-[#D9D9D933] backdrop-blur-md rounded-[100px] px-3 py-2 md:px-5 md:py-2.5 flex items-center gap-3 md:gap-4 shadow-2xl relative z-10 transition-transform duration-300 hover:scale-[1.02]">
+                                                <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#E6DBCC] flex items-center justify-center border-[2px] border-[#D8C5A5]">
+                                                    {/* House icon matching design */}
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B39A70" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline><line x1="12" y1="18" x2="12" y2="18.01"></line></svg>
+                                                </div>
+                                                <div className="flex flex-col pr-2 md:pr-4">
+                                                    <span className="text-[11px] md:text-[13px] text-white/90 tracking-wide font-normal drop-shadow-md">Availability</span>
+                                                    <span className="text-[15px] md:text-[20px] font-bold text-white tracking-wide mt-0.5 drop-shadow-md">
+                                                        {data.floorPlans[floorPlanIdx].availability}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            
+                                            {/* Line and Dot below Availability tag */}
+                                            <div className="absolute left-1/2 -translate-x-1/2 top-full flex flex-col items-center pointer-events-none">
+                                                <div className="w-[1.5px] h-6 md:h-12 bg-white/90 shadow-[0_0_5px_rgba(255,255,255,0.5)]"></div>
+                                                <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-[#D9D9D9]/80 backdrop-blur-[2px] flex items-center justify-center" style={{ boxShadow: '0 0 10px rgba(0,0,0,0.2)' }}>
+                                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-white rounded-full"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Build Area Floating Tag */}
+                                        <div 
+                                            key={`area-tag-${floorPlanIdx}`}
+                                            className="absolute animate-in fade-in zoom-in slide-in-from-bottom-2 duration-500 delay-100 group z-20"
+                                            style={{
+                                                top: ['42%', '32%', '50%', '38%'][floorPlanIdx % 4],
+                                                right: ['8%', '16%', '5%', '14%'][floorPlanIdx % 4]
+                                            }}
+                                        >
+                                            <div className="bg-[#D9D9D933] backdrop-blur-md rounded-[100px] px-3 py-2 md:px-5 md:py-2.5 flex items-center gap-3 md:gap-4 shadow-2xl relative z-10 transition-transform duration-300 hover:scale-[1.02]">
+                                                <div className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#E6DBCC] flex items-center justify-center border-[2px] border-[#D8C5A5]">
+                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B39A70" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                                                </div>
+                                                <div className="flex flex-col pr-2 md:pr-4">
+                                                    <span className="text-[11px] md:text-[13px] text-white/90 tracking-wide font-normal drop-shadow-md">Build Area</span>
+                                                    <span className="text-[15px] md:text-[20px] font-bold text-white tracking-wide mt-0.5 drop-shadow-md">
+                                                        {data.floorPlans[floorPlanIdx].buildArea}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            
+                                            {/* Line and Dot below Build Area tag */}
+                                            <div className="absolute left-1/2 -translate-x-1/2 top-full flex flex-col items-center pointer-events-none">
+                                                <div className="w-[1.5px] h-5 md:h-10 bg-white/90 shadow-[0_0_5px_rgba(255,255,255,0.5)]"></div>
+                                                <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-[#D9D9D9]/80 backdrop-blur-[2px] flex items-center justify-center" style={{ boxShadow: '0 0 10px rgba(0,0,0,0.2)' }}>
+                                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-white rounded-full"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    {/* Action Buttons row embedded INSIDE the bottom border */}
+                                    <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 w-max max-w-[95%] flex flex-wrap justify-center gap-3 md:gap-5 pointer-events-auto z-30">
+                                        {data.floorPlans.map((plan, idx) => (
+                                            <button
+                                                key={idx}
+                                                onClick={() => setFloorPlanIdx(idx)}
+                                                className={`px-5 py-3 md:px-8 md:py-4 rounded-[100px] text-[10px] md:text-[13px] tracking-[0.15em] font-semibold uppercase transition-all duration-300 backdrop-blur-lg whitespace-nowrap shadow-xl border ${
+                                                    floorPlanIdx === idx 
+                                                    ? "bg-white text-[#1a1a1a] shadow-[0_10px_30px_rgba(255,255,255,0.3)] scale-105 border-white" 
+                                                    : "bg-black/20 text-white border-white/50 hover:bg-white/30"
+                                                }`}
+                                            >
+                                                {plan.label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     ) : (
                         <div className="w-full flex items-center justify-center h-[500px] animate-in fade-in duration-700">
                             <p className="text-white/40 tracking-widest uppercase italic">Section coming soon</p>
@@ -435,13 +418,6 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
 
                     {/* Bottom Tab Navigation */}
                     <div className="w-full flex flex-wrap justify-center gap-8 md:gap-16 lg:gap-24 border-t border-white/10 pt-16 mt-auto">
-                        <div
-                            onClick={() => setActiveTab('location')}
-                            className={`flex flex-col items-center gap-4 group cursor-pointer transition-all duration-300 ${activeTab === 'location' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
-                        >
-                            <span className={`text-xs md:text-sm tracking-[0.4em] uppercase ${activeTab === 'location' ? 'text-[#b3a17e]' : 'text-white'}`}>Location</span>
-                            <div className={`h-[1px] transition-all duration-300 ${activeTab === 'location' ? 'w-full bg-[#b3a17e]' : 'w-0 bg-white group-hover:w-full'}`}></div>
-                        </div>
                         <div
                             onClick={() => setActiveTab('gallery')}
                             className={`flex flex-col items-center gap-4 group cursor-pointer transition-all duration-300 ${activeTab === 'gallery' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
@@ -457,11 +433,25 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                             <div className={`h-[1px] transition-all duration-300 ${activeTab === 'floorplans' ? 'w-full bg-[#b3a17e]' : 'w-0 bg-white group-hover:w-full'}`}></div>
                         </div>
                         <div
+                            onClick={() => setActiveTab('location')}
+                            className={`flex flex-col items-center gap-4 group cursor-pointer transition-all duration-300 ${activeTab === 'location' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
+                        >
+                            <span className={`text-xs md:text-sm tracking-[0.4em] uppercase ${activeTab === 'location' ? 'text-[#b3a17e]' : 'text-white'}`}>Location</span>
+                            <div className={`h-[1px] transition-all duration-300 ${activeTab === 'location' ? 'w-full bg-[#b3a17e]' : 'w-0 bg-white group-hover:w-full'}`}></div>
+                        </div>
+                        <div
                             onClick={() => setActiveTab('brochure')}
                             className={`flex flex-col items-center gap-4 group cursor-pointer transition-all duration-300 ${activeTab === 'brochure' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
                         >
                             <span className={`text-xs md:text-sm tracking-[0.4em] uppercase ${activeTab === 'brochure' ? 'text-[#b3a17e]' : 'text-white'}`}>Brochure</span>
                             <div className={`h-[1px] transition-all duration-300 ${activeTab === 'brochure' ? 'w-full bg-[#b3a17e]' : 'w-0 bg-white group-hover:w-full'}`}></div>
+                        </div>
+                        <div
+                            onClick={() => setActiveTab('availability')}
+                            className={`flex flex-col items-center gap-4 group cursor-pointer transition-all duration-300 ${activeTab === 'availability' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
+                        >
+                            <span className={`text-xs md:text-sm tracking-[0.4em] uppercase whitespace-nowrap ${activeTab === 'availability' ? 'text-[#b3a17e]' : 'text-white'}`}>Unit Availability</span>
+                            <div className={`h-[1px] transition-all duration-300 ${activeTab === 'availability' ? 'w-full bg-[#b3a17e]' : 'w-0 bg-white group-hover:w-full'}`}></div>
                         </div>
                     </div>
                 </section>
