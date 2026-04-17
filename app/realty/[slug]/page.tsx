@@ -122,13 +122,21 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                         LOCATION
                                     </h3>
 
-                                    <p className="text-[20px] text-[#F8EEDB] font-light leading-relaxed tracking-wide max-w-md">
-                                        {data.locationDesc}
-                                    </p>
+                                    <div className="flex flex-col gap-6">
+                                        <p className="text-[20px] text-[#F8EEDB] font-light leading-relaxed tracking-wide max-w-md">
+                                            {data.locationDesc}
+                                        </p>
+                                        <div className="flex flex-col gap-1 border-l-2 border-[#C6AE73] pl-4">
+                                            <span className="text-[#C6AE73] text-[10px] uppercase font-bold tracking-widest block">Full Address</span>
+                                            <p className="text-[16px] text-white/80 font-light leading-relaxed tracking-wide max-w-sm">
+                                                {data.address}
+                                            </p>
+                                        </div>
+                                    </div>
 
-                                    <button className="w-[237px] h-[46px] flex items-center justify-center gap-2 text-[#F8EEDB] text-[12px] md:text-[14px] tracking-[0.1em] uppercase bg-[#D9D9D933] rounded-[16px] border border-white/10 hover:bg-[#D9D9D9]/20 hover:scale-[1.02] hover:border-white/30 transition-all duration-300 whitespace-nowrap">
+                                    <a href={data.mapLink} target="_blank" rel="noopener noreferrer" className="w-[237px] h-[46px] flex items-center justify-center gap-2 text-[#F8EEDB] text-[12px] md:text-[14px] tracking-[0.1em] uppercase bg-[#D9D9D933] rounded-[16px] border border-white/10 hover:bg-[#D9D9D9]/20 hover:scale-[1.02] hover:border-white/30 transition-all duration-300 whitespace-nowrap">
                                         View Location <ArrowRight className="w-5 h-5 ml-1" />
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
