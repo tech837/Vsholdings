@@ -103,7 +103,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                         <div key="location" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-grow flex items-center justify-center">
                             <div className="flex flex-col md:flex-row items-center justify-between gap-12 w-full">
                                 {/* Map Side */}
-                                <div className="w-full md:w-1/2 aspect-square max-w-[450px] relative rounded-sm overflow-hidden border border-white/10">
+                                <div className="w-full md:w-1/2 aspect-square max-w-[600px] relative rounded-sm overflow-hidden border border-white/10" style={{height: '500px'}}>
                                     <iframe
                                         src={data.mapIframeSrc}
                                         width="100%"

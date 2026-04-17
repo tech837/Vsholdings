@@ -72,9 +72,9 @@ export const projectsData: Record<string, ProjectData> = {
             { icon: 'Layout', title: 'Modern Design', desc: "Thoughtfully crafted architecture with refined, contemporary aesthetics." }
         ],
         locationDesc: "Located in the heart of Namakkal, offering quick access to major roads, business hubs, schools, and everyday essentials.",
-        mapIframeSrc: "https://maps.google.com/maps?q=648R%2BJQ6%2C%20Kongu%20Nagar%20Rd%2C%20bodhisattva%2C%20Periyapatti%2C%20Tamil%20Nadu%20637003&t=&z=15&ie=UTF8&iwloc=&output=embed",
-        address: "648R+JQ6, Kongu Nagar Rd, bodhisattva, Periyapatti, Tamil Nadu 637003",
-        mapLink: "https://maps.app.goo.gl/WvTA9Y6bTBWzcph9A?g_st=aw",
+        mapIframeSrc: "https://maps.google.com/maps?q=11.2274,78.1673&t=&z=16&ie=UTF8&iwloc=&output=embed",
+        address: "Sendhur Villa, Namakkal, Tamil Nadu",
+        mapLink: "https://maps.app.goo.gl/NGZpRKeewfEMu7RB7",
         gallery: [
             { src: "/images/Home_Page/GYM.jpg", title: "GYMNASIUM" },
             { src: "/images/Home_Page/swimming pool.avif", title: "SWIMMING POOL" },
@@ -133,9 +133,9 @@ export const projectsData: Record<string, ProjectData> = {
             { icon: 'Layout', title: 'Modern Design', desc: "Thoughtfully crafted architecture with refined, contemporary aesthetics." }
         ],
         locationDesc: "Located in the growing hub of Namakkal, Meira Bloom offers unparalleled access to schools, hospitals, and major transit points.",
-        mapIframeSrc: "https://maps.google.com/maps?q=648R%2BJQ6%2C%20Kongu%20Nagar%20Rd%2C%20bodhisattva%2C%20Periyapatti%2C%20Tamil%20Nadu%20637003&t=&z=15&ie=UTF8&iwloc=&output=embed",
-        address: "648R+JQ6, Kongu Nagar Rd, bodhisattva, Periyapatti, Tamil Nadu 637003",
-        mapLink: "https://maps.app.goo.gl/WvTA9Y6bTBWzcph9A?g_st=aw",
+        mapIframeSrc: "https://maps.google.com/maps?q=11.2114415,78.1680249&t=&z=17&ie=UTF8&iwloc=&output=embed",
+        address: "6569+H6C, Meira Blooms, K K Nagar, Namakkal, Tamil Nadu 637001",
+        mapLink: "https://www.google.com/maps/place/Meira+Blooms/@11.2114468,78.16545,17z/data=!3m1!4b1!4m6!3m5!1s0x3babcf0079fc8161:0x8376d5d51f209ed8!8m2!3d11.2114415!4d78.1680249!16s%2Fg%2F11z17tj44x",
         gallery: [
             { src: "/images/Home_Page/GYM.jpg", title: "GYMNASIUM" },
             { src: "/images/Home_Page/swimming pool.avif", title: "SWIMMING POOL" },
