@@ -90,6 +90,7 @@ export default function RealtyPage() {
   const [showContent, setShowContent] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
   const [isInView, setIsInView] = useState(false);
+  const [displayText, setDisplayText] = useState("");
   const formSectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -107,26 +108,40 @@ export default function RealtyPage() {
     return () => observer.disconnect();
   }, []);
 
+  // Initial load animations
   useEffect(() => {
-    // Reset animations
-    setIsLoaded(false);
-    setShowContent(false);
-
-    // Start zoom out quickly
     const timer1 = setTimeout(() => setIsLoaded(true), 50);
-    // Show content slightly after zoom starts
     const timer2 = setTimeout(() => setShowContent(true), 300);
-    
-    // Autoscroll to next image after 3 seconds
-    const scrollTimer = setTimeout(() => {
-      setCurrentImageIdx((prev) => (prev + 1) % CAROUSEL_DATA.length);
-    }, 3000);
-
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
-      clearTimeout(scrollTimer);
     };
+  }, []);
+
+  // Autoscroll carousel
+  useEffect(() => {
+    const scrollTimer = setTimeout(() => {
+      setCurrentImageIdx((prev) => (prev + 1) % CAROUSEL_DATA.length);
+    }, 5000);
+    return () => clearTimeout(scrollTimer);
+  }, [currentImageIdx]);
+
+  // Typewriter effect 
+  useEffect(() => {
+    const targetText = CAROUSEL_DATA[currentImageIdx].subtitle;
+    setDisplayText("");
+    let currentIndex = 0;
+    
+    const interval = setInterval(() => {
+      if (currentIndex <= targetText.length) {
+        setDisplayText(targetText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 50);
+    
+    return () => clearInterval(interval);
   }, [currentImageIdx]);
 
   const nextImage = () => {
@@ -193,7 +208,7 @@ export default function RealtyPage() {
         </div>
 
         {/* Overlay Dark Gradient */}
-        <div className={`absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 z-10 pointer-events-none transition-opacity ${showContent ? "duration-700 opacity-100" : "duration-0 opacity-0"}`}></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 z-10 pointer-events-none"></div>
 
         {/* Header / Logo */}
         <div className={`relative z-20 flex pt-8 px-6 md:px-12 w-full justify-between items-start transition-all ${showContent ? 'duration-700 opacity-100 translate-y-0' : 'duration-0 opacity-0 -translate-y-4'}`}>
@@ -212,8 +227,11 @@ export default function RealtyPage() {
             <h1 className="text-[36px] font-light tracking-[0.2em] text-[#F8EEDB]">
               VS HOLDINGS <span className="text-[#F8EEDB]/40 ml-4">/</span>
             </h1>
-            <h2 className="text-[56px] italic text-[#F8EEDB] tracking-widest uppercase transition-all duration-300">
-              {CAROUSEL_DATA[currentImageIdx].subtitle}
+            <h2 className="text-[56px] italic text-[#F8EEDB] tracking-widest uppercase transition-none ml-2 relative">
+              {/* Invisible placeholder to maintain full width and prevent layout shift during typing */}
+              <span className="opacity-0">{CAROUSEL_DATA[currentImageIdx].subtitle}</span>
+              {/* Absolute positioned typing text */}
+              <span className="absolute left-0 top-0 whitespace-nowrap">{displayText}</span>
             </h2>
           </div>
         </div>

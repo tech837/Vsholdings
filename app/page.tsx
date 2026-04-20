@@ -34,18 +34,7 @@ export default function Home() {
       {/* Subtle overlay to make content pop */}
       <div className="absolute inset-0 bg-black/10 z-0"></div>
 
-      {/* Top Left Logo */}
-      <div className="absolute top-8 left-8 md:top-12 md:left-12 z-20">
-        <Image
-          src="/images/Card_Page/vs%20logo%201%20-%20Copy.png"
-          alt="VS Holdings Logo"
-          width={140}
-          height={70}
-          className="w-20 md:w-28 lg:w-32 object-contain brightness-0 invert drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
-          style={{ filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.5))" }}
-          priority
-        />
-      </div>
+
 
       {/* Buttons Overlay */}
       <div 
