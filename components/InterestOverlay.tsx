@@ -67,7 +67,7 @@ export default function InterestOverlay({ onComplete, backgroundImage, showClose
 
                     {isSubmitted ? (
                         <div className="flex flex-col items-center justify-center text-center gap-6 animate-in fade-in zoom-in duration-500">
-                            <h2 className="text-4xl md:text-6xl font-serif italic tracking-widest uppercase text-[#c5c5a1]">Thank You</h2>
+                            <h2 className="text-4xl md:text-6xl font-serif tracking-widest uppercase text-[#c5c5a1]">Thank You</h2>
                             <p className="text-white/60 tracking-[0.3em] uppercase max-w-sm text-sm">
                                 Your interest has been registered. Our representative will contact you shortly.
                             </p>
@@ -76,20 +76,20 @@ export default function InterestOverlay({ onComplete, backgroundImage, showClose
                         <form onSubmit={handleSubmit} className="flex flex-col gap-10 max-w-xl w-full mx-auto relative z-10">
                             <div className="flex flex-col gap-8">
                                 <div className="space-y-4">
-                                    <label className="text-white font-semibold tracking-wider text-[10px] md:text-sm uppercase block">Name</label>
+                                    <label className="text-white font-light tracking-wider text-[10px] md:text-sm uppercase block">Name</label>
                                     <input
                                         type="text"
                                         required
                                         placeholder="Your Full Name"
-                                        className="w-full bg-transparent border-b border-white/20 pb-2 text-white/60 text-sm font-light placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors"
+                                        className="w-full bg-transparent border-b border-white/20 pb-2 text-white/60 text-sm font-extralight placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors"
                                     />
                                 </div>
 
                                 <div className="flex flex-col md:flex-row gap-8">
                                     <div className="w-full md:w-1/2 space-y-4">
-                                        <label className="text-white font-semibold tracking-wider text-[10px] md:text-sm uppercase block">Country Code</label>
+                                        <label className="text-white font-light tracking-wider text-[10px] md:text-sm uppercase block">Country Code</label>
                                         <div className="relative">
-                                            <select className="w-full bg-transparent border-b border-white/20 pb-2 text-white/60 text-sm font-light focus:outline-none focus:border-white/60 transition-colors appearance-none cursor-pointer">
+                                            <select className="w-full bg-transparent border-b border-white/20 pb-2 text-white/60 text-sm font-extralight focus:outline-none focus:border-white/60 transition-colors appearance-none cursor-pointer">
                                                 <option className="bg-[#2E311A]">India (+91)</option>
                                                 <option className="bg-[#2E311A]">UAE (+971)</option>
                                                 <option className="bg-[#2E311A]">UK (+44)</option>
@@ -100,23 +100,23 @@ export default function InterestOverlay({ onComplete, backgroundImage, showClose
                                         </div>
                                     </div>
                                     <div className="w-full md:w-1/2 space-y-4">
-                                        <label className="text-white font-semibold tracking-wider text-[10px] md:text-sm uppercase block">Mobile</label>
+                                        <label className="text-white font-light tracking-wider text-[10px] md:text-sm uppercase block">Mobile</label>
                                         <input
                                             type="tel"
                                             required
                                             placeholder="5X XXXXXXX"
-                                            className="w-full bg-transparent border-b border-white/20 pb-2 text-white/60 text-sm font-light placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors"
+                                            className="w-full bg-transparent border-b border-white/20 pb-2 text-white/60 text-sm font-extralight placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-4">
-                                    <label className="text-white font-semibold tracking-wider text-[10px] md:text-sm uppercase block">Email</label>
+                                    <label className="text-white font-light tracking-wider text-[10px] md:text-sm uppercase block">Email</label>
                                     <input
                                         type="email"
                                         required
                                         placeholder="email@address.com"
-                                        className="w-full bg-transparent border-b border-white/20 pb-2 text-white/60 text-sm font-light placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors"
+                                        className="w-full bg-transparent border-b border-white/20 pb-2 text-white/60 text-sm font-extralight placeholder:text-white/30 focus:outline-none focus:border-white/60 transition-colors"
                                     />
                                 </div>
                             </div>
@@ -129,7 +129,11 @@ export default function InterestOverlay({ onComplete, backgroundImage, showClose
                                     Confirm Now
                                 </button>
 
-                                <div className="flex flex-col gap-5 text-white/50 text-[10px] md:text-xs tracking-[0.3em] uppercase font-light leading-relaxed">
+                                <p className="text-white/50 text-[11px] md:text-sm tracking-[0.15em] uppercase font-extralight leading-relaxed">
+                                    Submit to reveal project details, virtual tours, and site location.
+                                </p>
+
+                                <div className="flex flex-col gap-5 text-white/50 text-[10px] md:text-xs tracking-[0.3em] uppercase font-extralight leading-relaxed">
                                     <div className="flex items-center gap-4">
                                         <Phone className="w-4 h-4 text-[#c5c5a1]/60" strokeWidth={1.5} />
                                         <span>800 5 228 37</span>

@@ -34,6 +34,18 @@ export default function Home() {
       {/* Subtle overlay to make content pop */}
       <div className="absolute inset-0 bg-black/10 z-0"></div>
 
+      {/* VS Holdings Logo */}
+      <div className="absolute top-8 left-6 md:left-12 z-20">
+        <Image
+          src="/images/Home_Page/vs%20logo%201.png"
+          alt="VS Holdings Logo"
+          width={100}
+          height={50}
+          className="w-16 md:w-20 lg:w-24 object-contain drop-shadow-md"
+          priority
+        />
+      </div>
+
 
 
       {/* Buttons Overlay */}
@@ -45,15 +57,15 @@ export default function Home() {
         {/* Left Half */}
         <div className="flex-1 flex items-center justify-center pointer-events-auto">
           {/* Left Button - Government Projects */}
-          <div className="group relative w-[460px] md:w-[480px] lg:w-[500px] max-w-[90vw] h-[120px] flex items-center justify-center transition-transform duration-500 hover:scale-[1.02] cursor-default">
+          <div className="group relative w-[360px] md:w-[380px] lg:w-[400px] max-w-[90vw] h-[100px] flex items-center justify-center transition-transform duration-500 hover:scale-[1.02] cursor-default">
             <div
-              className="absolute inset-0 bg-transparent border border-transparent rounded-[20px] transition-all duration-300 group-hover:bg-black/20 group-hover:backdrop-blur-md group-hover:border-white/20 group-hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
+              className="absolute inset-0 bg-transparent border border-transparent rounded-[16px] transition-all duration-300 group-hover:bg-black/20 group-hover:backdrop-blur-md group-hover:border-white/20 group-hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
             ></div>
             <div className="relative z-10 text-center">
-              <h2 className="text-[28px] md:text-[34px] lg:text-[36px] italic text-[#F8EEDB] tracking-[0.08em] mb-2 drop-shadow-md whitespace-nowrap">
+              <h2 className="text-[20px] md:text-[24px] lg:text-[26px] text-[#C6AE73] tracking-[0.08em] mb-2 drop-shadow-md whitespace-nowrap">
                 GOVERNMENT PROJECTS
               </h2>
-              <p className="text-[12px] text-[#F8EEDB] tracking-[0.2em] uppercase drop-shadow-sm">
+              <p className="text-[10px] text-[#C6AE73]/70 tracking-[0.2em] uppercase drop-shadow-sm">
                 (Coming Soon)
               </p>
             </div>
@@ -63,16 +75,16 @@ export default function Home() {
         {/* Right Half */}
         <div className="flex-1 flex items-center justify-center pointer-events-auto">
           {/* Right Button - Realty Projects */}
-          <Link href="/realty" className="group relative w-[460px] md:w-[480px] lg:w-[500px] max-w-[90vw] h-[120px] flex items-center justify-center transition-transform duration-500 hover:scale-[1.02] cursor-pointer">
+          <Link href="/realty" className="group relative w-[360px] md:w-[380px] lg:w-[400px] max-w-[90vw] h-[100px] flex items-center justify-center transition-transform duration-500 hover:scale-[1.02] cursor-pointer">
             <div
-              className="absolute inset-0 bg-transparent border border-transparent rounded-[20px] transition-all duration-300 group-hover:bg-black/20 group-hover:backdrop-blur-md group-hover:border-white/20 group-hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
+              className="absolute inset-0 bg-transparent border border-transparent rounded-[16px] transition-all duration-300 group-hover:bg-black/20 group-hover:backdrop-blur-md group-hover:border-white/20 group-hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
             ></div>
             <div className="relative z-10 text-center">
-              <h2 className="text-[28px] md:text-[34px] lg:text-[36px] italic text-[#F8EEDB] tracking-[0.08em] mb-2 drop-shadow-md whitespace-nowrap">
+              <h2 className="text-[20px] md:text-[24px] lg:text-[26px] text-[#C6AE73] tracking-[0.08em] mb-2 drop-shadow-md whitespace-nowrap">
                 REALTY PROJECTS
               </h2>
-              <p className="flex items-center justify-center gap-2 text-[12px] text-[#C6AE73] group-hover:text-[#e8b577] tracking-[0.2em] uppercase transition-colors duration-300 drop-shadow-sm font-medium">
-                ENTER SITE <span className="text-[14px] font-light leading-[0] pb-[2px] group-hover:translate-x-1.5 transition-transform duration-300">→</span>
+              <p className="flex items-center justify-center gap-2 text-[10px] text-[#C6AE73] group-hover:text-[#e8b577] tracking-[0.2em] uppercase transition-colors duration-300 drop-shadow-sm font-normal">
+                ENTER SITE <span className="text-[12px] font-extralight leading-[0] pb-[2px] group-hover:translate-x-1.5 transition-transform duration-300">→</span>
               </p>
             </div>
           </Link>

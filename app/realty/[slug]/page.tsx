@@ -58,11 +58,11 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                         />
                     </div>
 
-                    <div className="absolute top-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-5 whitespace-nowrap drop-shadow-lg">
-                        <h1 className={`text-2xl md:text-4xl font-light tracking-[0.2em] ${slug === 'meira' ? 'text-white' : 'text-[#2E311A]'}`}>
-                            VS HOLDING <span className={`${slug === 'meira' ? 'text-white/40' : 'text-[#2E311A]/40'} ml-2 md:ml-4`}>/</span>
+                    <div className="absolute top-10 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 whitespace-nowrap drop-shadow-lg">
+                        <h1 className={`text-xl md:text-3xl tracking-[0.2em] ${slug === 'meira' ? 'text-white' : 'text-[#2E311A]'}`} style={{ fontWeight: 50 }}>
+                            VS HOLDING <span className={`${slug === 'meira' ? 'text-white/40' : 'text-[#2E311A]/40'} text-2xl md:text-4xl`}>/</span>
                         </h1>
-                        <h2 className={`text-2xl md:text-5xl italic tracking-widest uppercase ${slug === 'meira' ? 'text-white' : 'text-[#2E311A]'}`}>
+                        <h2 className={`text-xl md:text-4xl tracking-widest uppercase ${slug === 'meira' ? 'text-white' : 'text-[#2E311A]'}`} style={{ fontWeight: 50 }}>
                             {data.projectName}
                         </h2>
                     </div>
@@ -82,11 +82,11 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                         </button>
                     </div>
 
-                    <div className="absolute bottom-10 left-0 w-full px-8 md:px-16 lg:px-24 z-20 flex flex-row items-center justify-between pointer-events-none text-white uppercase text-[10px] md:text-xs tracking-[0.3em] font-medium">
+                    <div className="absolute bottom-10 left-0 w-full px-8 md:px-16 lg:px-24 z-20 flex flex-row items-center justify-between pointer-events-none text-white uppercase text-[10px] md:text-xs tracking-[0.3em] font-normal">
                         <div className="w-1/3 text-left">
                             {data.status}
                         </div>
-                        <div className="w-1/3 text-center tracking-[0.4em] font-light">
+                        <div className="w-1/3 text-center tracking-[0.4em] font-extralight">
                             {data.locationLine1}
                         </div>
                         <div className="w-1/3 text-right">
@@ -117,18 +117,18 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
 
                                 {/* Text Side */}
                                 <div className="w-full md:w-1/2 flex flex-col gap-10">
-                                    <h3 className="text-[56px] italic text-[#F8EEDB] tracking-widest uppercase flex items-baseline gap-4">
-                                        <span className="text-[56px] normal-case tracking-widest font-light opacity-80">PRIME</span>
+                                    <h3 className="text-[56px] text-[#F8EEDB] tracking-widest uppercase flex items-baseline gap-4">
+                                        <span className="text-[56px] normal-case tracking-widest font-extralight opacity-80">PRIME</span>
                                         LOCATION
                                     </h3>
 
                                     <div className="flex flex-col gap-6">
-                                        <p className="text-[20px] text-[#F8EEDB] font-light leading-relaxed tracking-wide max-w-md">
+                                        <p className="text-[20px] text-[#F8EEDB] font-extralight leading-relaxed tracking-wide max-w-md">
                                             {data.locationDesc}
                                         </p>
                                         <div className="flex flex-col gap-1 border-l-2 border-[#C6AE73] pl-4">
-                                            <span className="text-[#C6AE73] text-[10px] uppercase font-bold tracking-widest block">Full Address</span>
-                                            <p className="text-[16px] text-white/80 font-light leading-relaxed tracking-wide max-w-sm">
+                                            <span className="text-[#C6AE73] text-[10px] uppercase font-light tracking-widest block">Full Address</span>
+                                            <p className="text-[16px] text-white/80 font-extralight leading-relaxed tracking-wide max-w-sm">
                                                 {data.address}
                                             </p>
                                         </div>
@@ -175,7 +175,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                                             />
                                                         </div>
                                                         <div className={`pt-4 pb-0 flex items-center justify-center transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`}>
-                                                            <p className="text-[#2E311A] italic text-[14px] md:text-[16px] lg:text-[20px] tracking-[0.4em] uppercase">
+                                                            <p className="text-[#2E311A] text-[14px] md:text-[16px] lg:text-[20px] tracking-[0.4em] uppercase">
                                                                 {img.title}
                                                             </p>
                                                         </div>
@@ -206,7 +206,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                             <div className="w-full flex items-center justify-center py-2 px-4">
                                 <div className="bg-[#d9d9d9] w-full max-w-[1400px] h-auto md:h-[480px] relative flex flex-col items-center justify-center rounded-sm overflow-hidden py-8 md:py-0">
                                     {/* Header Text - Aligned Left */}
-                                    <p className="md:absolute md:top-8 md:left-10 text-[#1a1a1a]/70 text-[10px] md:text-sm tracking-[0.2em] text-left max-w-md font-light uppercase px-6 md:px-0 mb-4 md:mb-0" dangerouslySetInnerHTML={{ __html: data.floorPlansText }}>
+                                    <p className="md:absolute md:top-8 md:left-10 text-[#1a1a1a]/70 text-[10px] md:text-sm tracking-[0.2em] text-left max-w-md font-extralight uppercase px-6 md:px-0 mb-4 md:mb-0" dangerouslySetInnerHTML={{ __html: data.floorPlansText }}>
                                     </p>
 
                                     <div className="relative w-full h-[300px] md:h-[360px] flex items-center justify-center overflow-visible md:mt-8">
@@ -266,7 +266,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                         <div className="relative">
                                             <button
                                                 onClick={() => setIsFloorPlanDropdownOpen(!isFloorPlanDropdownOpen)}
-                                                className="flex items-center gap-2 text-[#1a1a1a] text-lg md:text-xl font-bold tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
+                                                className="flex items-center gap-2 text-[#1a1a1a] text-lg md:text-xl font-light tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
                                             >
                                                 {data.floorPlans[floorPlanIdx].label}
                                                 <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isFloorPlanDropdownOpen ? 'rotate-180' : ''}`} />
@@ -282,7 +282,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                                             setFloorPlanIdx(idx);
                                                             setIsFloorPlanDropdownOpen(false);
                                                         }}
-                                                        className={`w-full text-right px-6 py-4 text-[10px] md:text-xs tracking-[0.2em] uppercase border-b border-[#2E311A]/10 last:border-none transition-colors hover:bg-[#C6AE73]/20 ${floorPlanIdx === idx ? 'bg-[#C6AE73]/30 text-[#1a1a1a] font-bold' : 'text-[#1a1a1a]/80 font-light'}`}
+                                                        className={`w-full text-right px-6 py-4 text-[10px] md:text-xs tracking-[0.2em] uppercase border-b border-[#2E311A]/10 last:border-none transition-colors hover:bg-[#C6AE73]/20 ${floorPlanIdx === idx ? 'bg-[#C6AE73]/30 text-[#1a1a1a] font-light' : 'text-[#1a1a1a]/80 font-extralight'}`}
                                                     >
                                                         {plan.label}
                                                     </button>
@@ -307,10 +307,10 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                     <div className="absolute inset-0 bg-black/20"></div>
                                     <div className="absolute inset-0 flex items-center justify-center">
                                         <div className="bg-[#D9D9D91A] backdrop-blur-[4px] border border-white/10 rounded-lg flex flex-col items-center justify-center gap-6 text-center w-[90%] md:w-[863px] md:h-[339px] shadow-2xl p-6 md:p-12">
-                                            <h3 className="italic text-2xl md:text-[32px] text-white tracking-[0.1em] uppercase leading-tight">
+                                            <h3 className="text-2xl md:text-[32px] text-white tracking-[0.1em] uppercase leading-tight">
                                                 Download The Brochure
                                             </h3>
-                                            <p className="text-white/60 text-[10px] md:text-sm tracking-[0.3em] font-light uppercase max-w-lg">
+                                            <p className="text-white/60 text-[10px] md:text-sm tracking-[0.3em] font-extralight uppercase max-w-lg">
                                                 Explore detailed specifications, floor plans, and amenities.
                                             </p>
                                             <button className="mt-4 w-[280px] md:w-[358px] h-[46px] flex items-center justify-center bg-transparent border border-white/20 text-white text-[10px] tracking-[0.3em] uppercase hover:bg-white/5 hover:scale-[1.02] rounded-none transition-all duration-300">
@@ -346,8 +346,8 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                                     <line x1="12" y1="16" x2="12" y2="19.5"></line>
                                                 </svg>
                                             </div>
-                                            <span className="text-[12px] md:text-[14px] text-white/95 font-light tracking-wide drop-shadow-md">Availability</span>
-                                            <span className="text-[16px] md:text-[18px] font-bold text-white tracking-wide drop-shadow-md">
+                                            <span className="text-[12px] md:text-[14px] text-white/95 font-extralight tracking-wide drop-shadow-md">Availability</span>
+                                            <span className="text-[16px] md:text-[18px] font-light text-white tracking-wide drop-shadow-md">
                                                 {data.floorPlans[floorPlanIdx]?.availability || "12 Units Available"}
                                             </span>
                                         </div>
@@ -361,8 +361,8 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                                     <rect x="4" y="10" width="4.5" height="8" rx="1.5"></rect>
                                                 </svg>
                                             </div>
-                                            <span className="text-[12px] md:text-[14px] text-white/95 font-light tracking-wide drop-shadow-md">Built-up Area</span>
-                                            <span className="text-[16px] md:text-[18px] font-bold text-white tracking-wide drop-shadow-md">
+                                            <span className="text-[12px] md:text-[14px] text-white/95 font-extralight tracking-wide drop-shadow-md">Built-up Area</span>
+                                            <span className="text-[16px] md:text-[18px] font-light text-white tracking-wide drop-shadow-md">
                                                 {data.floorPlans[floorPlanIdx]?.buildArea || "1100 sq.ft"}
                                             </span>
                                         </div>
@@ -375,7 +375,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                             <button
                                                 key={idx}
                                                 onClick={() => setFloorPlanIdx(idx)}
-                                                className={`px-5 py-2.5 md:px-7 md:py-3.5 rounded-[8px] md:rounded-[10px] text-[12px] md:text-[16px] tracking-wide font-normal transition-all duration-300 backdrop-blur-md whitespace-nowrap shadow-lg border border-white/20 ${floorPlanIdx === idx
+                                                className={`px-5 py-2.5 md:px-7 md:py-3.5 rounded-[8px] md:rounded-[10px] text-[12px] md:text-[16px] tracking-wide font-light transition-all duration-300 backdrop-blur-md whitespace-nowrap shadow-lg border border-white/20 ${floorPlanIdx === idx
                                                     ? "bg-[#EAEAEA] text-[#1a1a1a] shadow-[0_10px_30px_rgba(255,255,255,0.4)] scale-[1.02] border-transparent"
                                                     : "bg-[#D9D9D9]/40 text-black md:text-white/90 hover:bg-[#D9D9D9]/60 hover:text-white"
                                                     }`}
@@ -389,7 +389,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                         </div>
                     ) : (
                         <div className="w-full flex items-center justify-center h-[500px] animate-in fade-in duration-700">
-                            <p className="text-white/40 tracking-widest uppercase italic">Section coming soon</p>
+                            <p className="text-white/40 tracking-widest uppercase">Section coming soon</p>
                         </div>
                     )}
 
@@ -435,8 +435,8 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
 
                 {/* FAQ Section */}
                 <section className="w-full bg-[#F8EEDB] py-24 px-6 md:px-12 lg:px-24 flex flex-col items-center gap-16">
-                    <h2 className="text-[56px] italic text-[#2E311A] tracking-tight text-center">
-                        Frequently Asked questions
+                    <h2 className="text-xl md:text-4xl text-[#2E311A] tracking-tight text-center">
+                        Frequently Asked Questions
                     </h2>
 
                     <div className="w-full max-w-5xl flex flex-col gap-4">
@@ -451,7 +451,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                         onClick={() => setOpenFaq(isOpen ? null : index)}
                                         className="w-full px-8 py-6 flex items-center justify-between text-left group"
                                     >
-                                        <span className={`text-[20px] font-medium font-body tracking-wide text-[#F8EEDB]`}>
+                                        <span className={`text-[20px] font-normal font-body tracking-wide text-[#F8EEDB]`}>
                                             {faq.question}
                                         </span>
                                         <ArrowUpRight
@@ -461,7 +461,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                     </button>
 
                                     <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-40 opacity-100 pb-8 px-8' : 'max-h-0 opacity-0'}`}>
-                                        <p className="text-white/90 text-[16px] md:text-[20px] font-light leading-relaxed max-w-4xl">
+                                        <p className="text-white/90 text-[16px] md:text-[20px] font-extralight leading-relaxed max-w-4xl">
                                             {faq.answer}
                                         </p>
                                     </div>
@@ -473,7 +473,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
 
                 {/* Footer */}
                 <footer className="w-full py-6 flex items-center justify-center bg-[#F8EEDB] relative z-20 border-t border-black/5">
-                    <p className="text-[8px] md:text-[10px] text-[#2E311A]/60 tracking-widest uppercase font-medium">
+                    <p className="text-[8px] md:text-[10px] text-[#2E311A]/60 tracking-widest uppercase font-normal">
                         ©2025 VS HOLDING. All rights reserved
                     </p>
                 </footer>

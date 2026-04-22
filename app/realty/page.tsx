@@ -223,11 +223,11 @@ export default function RealtyPage() {
             />
           </Link>
 
-          <div className="absolute left-1/2 top-8 md:top-10 -translate-x-1/2 text-center hidden sm:flex items-center gap-6 drop-shadow-lg whitespace-nowrap">
-            <h1 className="text-[36px] font-light tracking-[0.2em] text-[#F8EEDB]">
-              VS HOLDINGS <span className="text-[#F8EEDB]/40 ml-4">/</span>
+          <div className="absolute left-1/2 top-8 md:top-10 -translate-x-1/2 text-center hidden sm:flex items-center gap-2 drop-shadow-lg whitespace-nowrap">
+            <h1 className="text-xl md:text-3xl tracking-[0.2em] text-[#F8EEDB]" style={{ fontWeight: 50 }}>
+              VS HOLDINGS <span className="text-[#F8EEDB]/40 text-2xl md:text-4xl">/</span>
             </h1>
-            <h2 className="text-[56px] italic text-[#F8EEDB] tracking-widest uppercase transition-none ml-2 relative">
+            <h2 className="text-xl md:text-4xl text-[#F8EEDB] tracking-widest uppercase transition-none relative" style={{ fontWeight: 50 }}>
               {/* Invisible placeholder to maintain full width and prevent layout shift during typing */}
               <span className="opacity-0">{CAROUSEL_DATA[currentImageIdx].subtitle}</span>
               {/* Absolute positioned typing text */}
@@ -270,20 +270,20 @@ export default function RealtyPage() {
         {/* Left Column - Information */}
         <div className={`w-full md:w-[45%] bg-[#0a0a0a] flex flex-col justify-center px-8 md:px-16 lg:px-24 py-16 md:py-0 relative z-10 transition-all duration-[1500ms] ease-out ${isInView ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
           <div className="mb-12 font-body">
-            <h2 className="text-[48px] font-bold text-[#F8EEDB] font-body tracking-tight leading-none mb-1">
+            <h2 className="text-[48px] font-light text-[#F8EEDB] font-body tracking-tight leading-none mb-1">
               EXPRESS
             </h2>
-            <h3 className="text-[48px] font-medium text-[#C6AE73] font-body tracking-tight leading-none">
+            <h3 className="text-[48px] font-normal text-[#C6AE73] font-body tracking-tight leading-none">
               YOUR INTEREST
             </h3>
           </div>
 
           <div className="flex gap-6 items-start relative before:content-[''] before:absolute before:left-0 before:top-2 before:bottom-2 before:w-[2px] before:bg-white/20 pl-6">
             <div className="flex flex-col gap-6">
-              <h4 className="text-[36px] italic text-[#F8EEDB] leading-snug tracking-wide max-w-xl">
+              <h4 className="text-[36px] text-[#F8EEDB] leading-snug tracking-wide max-w-xl">
                 CURATING EXCELLENCE IN MODERN REAL ESTATE
               </h4>
-              <p className="text-[15px] text-[#F8EEDB] font-light leading-relaxed tracking-wide max-w-xs md:max-w-sm">
+              <p className="text-[15px] text-[#F8EEDB] font-extralight leading-relaxed tracking-wide max-w-xs md:max-w-sm">
                 VS Holdings is a premier global real estate group dedicated to
                 redefining luxury and performance across the world's most iconic
                 skylines.
@@ -335,20 +335,20 @@ export default function RealtyPage() {
             <form className="flex flex-col gap-8">
               {/* Name Input */}
               <div className="flex flex-col border-b border-white/20 pb-2 focus-within:border-white/60 transition-colors">
-                <label className="text-[#F8EEDB] font-semibold tracking-wider text-[20px] mb-2">
+                <label className="text-[#F8EEDB] font-light tracking-wider text-[20px] mb-2">
                   Name
                 </label>
                 <input
                   type="text"
                   placeholder="Your Full Name"
-                  className="w-full bg-transparent outline-none text-white/60 text-sm placeholder:text-white/30 font-light"
+                  className="w-full bg-transparent outline-none text-white/60 text-sm placeholder:text-white/30 font-extralight"
                 />
               </div>
 
               {/* Country Code & Mobile Input */}
               <div className="flex gap-6">
                 <div className="flex flex-col border-b border-white/20 pb-2 focus-within:border-white/60 transition-colors w-1/3">
-                  <label className="text-[#F8EEDB] font-semibold tracking-wider text-[20px] mb-2">
+                  <label className="text-[#F8EEDB] font-light tracking-wider text-[20px] mb-2">
                     Country Code
                   </label>
                   <div className="relative flex items-center">
@@ -356,33 +356,33 @@ export default function RealtyPage() {
                       type="text"
                       defaultValue="India (+91)"
                       readOnly
-                      className="w-full bg-transparent outline-none text-white/60 text-sm font-light cursor-pointer pr-5"
+                      className="w-full bg-transparent outline-none text-white/60 text-sm font-extralight cursor-pointer pr-5"
                     />
                     <ChevronDown className="w-4 h-4 text-white/60 absolute right-0 pointer-events-none" />
                   </div>
                 </div>
 
                 <div className="flex flex-col border-b border-white/20 pb-2 focus-within:border-white/60 transition-colors w-2/3">
-                  <label className="text-[#F8EEDB] font-semibold tracking-wider text-[20px] mb-2">
+                  <label className="text-[#F8EEDB] font-light tracking-wider text-[20px] mb-2">
                     Mobile
                   </label>
                   <input
                     type="tel"
                     placeholder="9X XXXXXXXX"
-                    className="w-full bg-transparent outline-none text-white/60 text-sm font-light placeholder:text-white/30"
+                    className="w-full bg-transparent outline-none text-white/60 text-sm font-extralight placeholder:text-white/30"
                   />
                 </div>
               </div>
 
               {/* Email Input */}
               <div className="flex flex-col border-b border-white/20 pb-2 focus-within:border-white/60 transition-colors">
-                <label className="text-[#F8EEDB] font-semibold tracking-wider text-[20px] mb-2">
+                <label className="text-[#F8EEDB] font-light tracking-wider text-[20px] mb-2">
                   Email
                 </label>
                 <input
                   type="email"
                   placeholder="email@address.com"
-                  className="w-full bg-transparent outline-none text-white/60 text-sm font-light placeholder:text-white/30"
+                  className="w-full bg-transparent outline-none text-white/60 text-sm font-extralight placeholder:text-white/30"
                 />
               </div>
 
