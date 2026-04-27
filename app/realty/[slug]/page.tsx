@@ -82,11 +82,11 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                         </button>
                     </div>
 
-                    <div className="absolute bottom-10 left-0 w-full px-8 md:px-16 lg:px-24 z-20 flex flex-row items-center justify-between pointer-events-none text-white uppercase text-[10px] md:text-xs tracking-[0.3em] font-normal">
+                    <div className="absolute bottom-10 left-0 w-full px-4 sm:px-8 md:px-16 lg:px-24 z-20 flex flex-row items-center justify-between pointer-events-none text-white uppercase text-[8px] sm:text-[10px] md:text-xs tracking-[0.1em] sm:tracking-[0.3em] font-normal gap-2">
                         <div className="w-1/3 text-left">
                             {data.status}
                         </div>
-                        <div className="w-1/3 text-center tracking-[0.4em] font-extralight">
+                        <div className="w-1/3 text-center tracking-[0.2em] sm:tracking-[0.4em] font-extralight">
                             {data.locationLine1}
                         </div>
                         <div className="w-1/3 text-right">
@@ -98,12 +98,12 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
 
 
                 {/* Dynamic Content Section (Location / Gallery) */}
-                <section id="dynamic-content" className="w-full bg-black py-8 md:py-12 px-6 md:px-12 lg:px-24 flex flex-col justify-between gap-6 relative h-[100svh] min-h-[750px]">
+                <section id="dynamic-content" className="w-full bg-black py-12 px-6 md:px-12 lg:px-24 flex flex-col justify-between gap-12 relative min-h-[100svh] h-auto">
                     {activeTab === 'location' ? (
                         <div key="location" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-grow flex items-center justify-center">
                             <div className="flex flex-col md:flex-row items-center justify-between gap-12 w-full">
                                 {/* Map Side */}
-                                <div className="w-full md:w-1/2 aspect-square max-w-[600px] relative rounded-sm overflow-hidden border border-white/10" style={{height: '500px'}}>
+                                <div className="w-full md:w-1/2 aspect-square max-w-[600px] relative rounded-sm overflow-hidden border border-white/10 h-[300px] sm:h-[400px] md:h-auto md:min-h-[500px]">
                                     <iframe
                                         src={data.mapIframeSrc}
                                         width="100%"
@@ -117,8 +117,8 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
 
                                 {/* Text Side */}
                                 <div className="w-full md:w-1/2 flex flex-col gap-10">
-                                    <h3 className="text-[56px] text-[#F8EEDB] tracking-widest uppercase flex items-baseline gap-4">
-                                        <span className="text-[56px] normal-case tracking-widest font-extralight opacity-80">PRIME</span>
+                                    <h3 className="text-[32px] md:text-[56px] text-[#F8EEDB] tracking-widest uppercase flex flex-wrap items-baseline gap-2 md:gap-4 leading-tight">
+                                        <span className="text-[32px] md:text-[56px] normal-case tracking-widest font-extralight opacity-80">PRIME</span>
                                         LOCATION
                                     </h3>
 
@@ -141,9 +141,9 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                             </div>
                         </div>
                     ) : activeTab === 'gallery' ? (
-                        <div key="gallery" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-grow flex flex-col justify-center">
+                        <div key="gallery" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-grow flex flex-col justify-center min-h-[400px]">
                             <div className="w-full flex flex-col items-center justify-center gap-6">
-                                <div className="relative w-full h-[400px] md:h-[480px] flex items-center justify-center overflow-visible">
+                                <div className="relative w-full h-[300px] sm:h-[400px] md:h-[480px] flex items-center justify-center overflow-visible">
                                     <div className="relative w-full max-w-7xl h-full flex items-center justify-center">
                                         {data.gallery.map((img, i) => {
                                             let offset = i - galleryIdx;
@@ -164,7 +164,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                                         filter: isActive ? 'none' : 'blur(2px)',
                                                     }}
                                                 >
-                                                    <div className="relative w-[320px] h-[190px] md:w-[500px] md:h-[300px] lg:w-[800px] lg:h-[420px] bg-[#F8EEDB] shadow-2xl overflow-hidden flex flex-col p-4">
+                                                    <div className="relative w-[280px] h-[180px] sm:w-[320px] sm:h-[190px] md:w-[500px] md:h-[300px] lg:w-[800px] lg:h-[420px] bg-[#F8EEDB] shadow-2xl overflow-hidden flex flex-col p-2 sm:p-4">
                                                         <div className="relative flex-grow w-full overflow-hidden">
                                                             <Image
                                                                 src={img.src}
@@ -203,8 +203,8 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                         </div>
                     ) : activeTab === 'floorplans' ? (
                         <div key="floorplans" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-grow flex items-center justify-center">
-                            <div className="w-full flex items-center justify-center py-2 px-4">
-                                <div className="bg-[#d9d9d9] w-full max-w-[1400px] h-auto md:h-[480px] relative flex flex-col items-center justify-center rounded-sm overflow-hidden py-8 md:py-0">
+                            <div className="w-full flex items-center justify-center py-2 px-0 sm:px-4">
+                                <div className="bg-[#d9d9d9] w-full max-w-[1400px] h-auto md:h-[480px] relative flex flex-col items-center justify-center rounded-sm overflow-hidden py-10 pb-24 md:py-0 md:pb-0">
                                     {/* Header Text - Aligned Left */}
                                     <p className="md:absolute md:top-8 md:left-10 text-[#1a1a1a]/70 text-[10px] md:text-sm tracking-[0.2em] text-left max-w-md font-extralight uppercase px-6 md:px-0 mb-4 md:mb-0" dangerouslySetInnerHTML={{ __html: data.floorPlansText }}>
                                     </p>
@@ -323,7 +323,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                         </div>
                     ) : activeTab === 'availability' ? (
                         <div key="availability" className="w-full animate-in fade-in slide-in-from-bottom-10 zoom-in-95 duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex-grow flex flex-col items-center justify-center py-4 md:py-8">
-                            <div className="relative w-full max-w-7xl h-[55vh] min-h-[450px] max-h-[650px] rounded-none overflow-hidden shadow-2xl my-auto">
+                            <div className="relative w-full max-w-7xl h-auto md:h-[55vh] min-h-[500px] md:min-h-[450px] max-h-none md:max-h-[650px] rounded-none overflow-hidden shadow-2xl my-auto flex flex-col justify-center">
                                 {/* Background Image */}
                                 <Image
                                     src={data.gallery.find(g => g.title.includes('BEDROOM'))?.src || data.gallery[0].src}
@@ -333,10 +333,10 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                 />
 
                                 {/* Outline Border */}
-                                <div className="absolute inset-4 md:inset-8 lg:inset-10 border-[5px] border-[#F8EEDB] rounded-[24px] md:rounded-[36px] pointer-events-none flex flex-col items-center justify-center z-10 box-border">
+                                <div className="absolute inset-3 md:inset-8 lg:inset-10 border-[3px] md:border-[5px] border-[#F8EEDB] rounded-[24px] md:rounded-[36px] pointer-events-none flex flex-col items-center justify-center z-10 box-border">
 
                                     {/* Center Glass Panels */}
-                                    <div className="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-8 pointer-events-auto w-full h-full pb-10">
+                                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 pointer-events-auto w-full h-full pb-20 md:pb-10 pt-10 md:pt-0">
 
                                         {/* Availability Panel*/}
                                         <div className="bg-[#D9D9D9]/40 backdrop-blur-[16px] rounded-[12px] md:rounded-[16px] w-[200px] md:w-[240px] py-5 md:py-6 flex flex-col items-center justify-center gap-1.5 md:gap-2 shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-white/30 transition-transform duration-300 hover:scale-[1.02]">
@@ -394,7 +394,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                     )}
 
                     {/* Bottom Tab Navigation */}
-                    <div className="w-full flex flex-wrap justify-center gap-8 md:gap-16 lg:gap-24 border-t border-white/10 pt-16 mt-auto">
+                    <div className="w-full flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-16 lg:gap-24 border-t border-white/10 pt-8 md:pt-16 mt-auto">
                         <div
                             onClick={() => setActiveTab('gallery')}
                             className={`flex flex-col items-center gap-4 group cursor-pointer transition-all duration-300 ${activeTab === 'gallery' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
