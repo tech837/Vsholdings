@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Phone, MessageCircle, ArrowRight, MapPin, X } from "lucide-react";
 
 interface InterestOverlayProps {
-    onComplete: () => void;
+    onComplete: (submitted: boolean) => void;
     backgroundImage: string;
     showCloseButton?: boolean;
 }
@@ -30,16 +30,16 @@ export default function InterestOverlay({ onComplete, backgroundImage, showClose
         e.preventDefault();
         setIsSubmitted(true);
         setTimeout(() => {
-            handleExit();
+            handleExit(true);
         }, 2000);
     };
 
-    const handleExit = () => {
+    const handleExit = (submitted = false) => {
         setIsExiting(true);
         setTimeout(() => {
             document.body.style.overflow = 'auto';
-            onComplete();
-        }, 500); // Updated to match 500ms duration
+            onComplete(submitted);
+        }, 500);
     };
 
     return (
@@ -57,7 +57,7 @@ export default function InterestOverlay({ onComplete, backgroundImage, showClose
                     {/* Close Button */}
                     {showCloseButton && (
                         <button
-                            onClick={handleExit}
+                            onClick={() => handleExit(false)}
                             className="absolute top-8 right-8 md:top-12 md:right-12 text-white/40 hover:text-white transition-colors group p-2"
                             aria-label="Close overlay"
                         >
@@ -68,7 +68,7 @@ export default function InterestOverlay({ onComplete, backgroundImage, showClose
                     {isSubmitted ? (
                         <div className="flex flex-col items-center justify-center text-center gap-6 animate-in fade-in zoom-in duration-500">
                             <h2 className="text-4xl md:text-6xl font-serif tracking-widest uppercase text-[#c5c5a1]">Thank You</h2>
-                            <p className="text-white/60 tracking-[0.3em] uppercase max-w-sm text-sm">
+                            <p className="text-white/60 uppercase max-w-sm text-sm leading-loose" style={{ letterSpacing: '0.2em' }}>
                                 Your interest has been registered. Our representative will contact you shortly.
                             </p>
                         </div>
@@ -129,18 +129,18 @@ export default function InterestOverlay({ onComplete, backgroundImage, showClose
                                     Confirm Now
                                 </button>
 
-                                <p className="text-white/50 text-[11px] md:text-sm tracking-[0.15em] uppercase font-extralight leading-relaxed">
+                                <p className="text-white/50 text-[11px] md:text-sm uppercase font-extralight leading-loose" style={{ letterSpacing: '0.2em' }}>
                                     Submit to reveal project details, virtual tours, and site location.
                                 </p>
 
-                                <div className="flex flex-col gap-5 text-white/50 text-[10px] md:text-xs tracking-[0.3em] uppercase font-extralight leading-relaxed">
+                                <div className="flex flex-col gap-5 text-white/50 text-[10px] md:text-xs uppercase font-extralight leading-relaxed">
                                     <div className="flex items-center gap-4">
                                         <Phone className="w-4 h-4 text-[#c5c5a1]/60" strokeWidth={1.5} />
-                                        <span>800 5 228 37</span>
+                                        <span style={{ letterSpacing: '0.2em' }}>800 5 228 37</span>
                                     </div>
                                     <div className="flex items-start gap-4">
                                         <MapPin className="w-4 h-4 mt-0.5 text-[#c5c5a1]/60" strokeWidth={1.5} />
-                                        <span>SHEIKH ZAYED ROAD, DUBAI, UAE 341186</span>
+                                        <span style={{ letterSpacing: '0.2em' }}>SHEIKH ZAYED ROAD, DUBAI, UAE 341186</span>
                                     </div>
                                 </div>
                             </div>

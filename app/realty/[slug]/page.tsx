@@ -23,6 +23,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
     const [openFaq, setOpenFaq] = useState<number | null>(null);
     const [showOverlay, setShowOverlay] = useState(true);
     const [isManualOpen, setIsManualOpen] = useState(false);
+    const [isBrochureOpen, setIsBrochureOpen] = useState(false);
     const [isFloorPlanDropdownOpen, setIsFloorPlanDropdownOpen] = useState(false);
 
     const handleOverlayComplete = (setOverlayOpenState: (open: boolean) => void) => {
@@ -42,8 +43,9 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
 
     return (
         <>
-            {showOverlay && <InterestOverlay onComplete={() => handleOverlayComplete(setShowOverlay)} backgroundImage={data.overlayBgImage} showCloseButton={false} />}
+            {showOverlay && <InterestOverlay onComplete={() => handleOverlayComplete(setShowOverlay)} backgroundImage={data.overlayBgImage} showCloseButton={true} />}
             {isManualOpen && <InterestOverlay onComplete={() => handleOverlayComplete(setIsManualOpen)} backgroundImage={data.overlayBgImage} showCloseButton={true} />}
+            {isBrochureOpen && <InterestOverlay onComplete={(submitted) => { setIsBrochureOpen(false); if (submitted) { const link = document.createElement('a'); link.href = data.brochureBg; link.download = `${data.projectName}-Brochure`; document.body.appendChild(link); link.click(); document.body.removeChild(link); } }} backgroundImage={data.overlayBgImage} showCloseButton={true} />}
             <main className="min-h-screen w-full bg-[#0a0a0a] text-white flex flex-col relative overflow-x-hidden">
                 {/* Hero Section */}
                 <section className="h-screen w-full relative flex-shrink-0">
@@ -313,7 +315,7 @@ export default function PropertyPage({ params }: { params: Promise<{ slug: strin
                                             <p className="text-white/60 text-[10px] md:text-sm tracking-[0.3em] font-extralight uppercase max-w-lg">
                                                 Explore detailed specifications, floor plans, and amenities.
                                             </p>
-                                            <button className="mt-4 w-[280px] md:w-[358px] h-[46px] flex items-center justify-center bg-transparent border border-white/20 text-white text-[10px] tracking-[0.3em] uppercase hover:bg-white/5 hover:scale-[1.02] rounded-none transition-all duration-300">
+                                            <button onClick={() => setIsBrochureOpen(true)} className="mt-4 w-[280px] md:w-[358px] h-[46px] flex items-center justify-center bg-transparent border border-white/20 text-white text-[10px] tracking-[0.3em] uppercase hover:bg-white/5 hover:scale-[1.02] rounded-none transition-all duration-300">
                                                 Download PDF
                                             </button>
                                         </div>
